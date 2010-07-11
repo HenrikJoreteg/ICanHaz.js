@@ -17,21 +17,21 @@ Documentation at: http://github.com/HenrikJoreteg/ICanHaz.js
 // JSLint Config
 /*jslint white: true, browser: true, onevar: true, undef: true, nomen: true, eqeqeq: true, plusplus: true, bitwise: true, regexp: true, strict: true, newcap: true, immed: true */
 /*global $ jQuery Mustache */
-var ich = {};
+var ICH = {};
 
-ich.init = function () {
-	ich.ICanHaz_cache = {};
+ICH.init = function () {
+	ICH.ICanHaz_cache = {};
 	
 	$('.template').each(function () {
 		var title = $(this).attr('title');
 		
 		// build our cache
-		ich.ICanHaz_cache[title] = $(this).html(); 
+		ICH.ICanHaz_cache[title] = $(this).html(); 
 		
 		// build our retrieval function
-		ich[title] = function (data) {
+		ICH[title] = function (data) {
 			data = data || {};
-			return $(Mustache.to_html(ich.ICanHaz_cache[title], data));
+			return $(Mustache.to_html(ICH.ICanHaz_cache[title], data));
 		};
 	});
 };
@@ -39,5 +39,5 @@ ich.init = function () {
 // init itself on document ready, using jQuery instead of $ if people
 // want to use other libraries that conflict.
 jQuery(function () {
-	ich.init();
+	ICH.init();
 });
