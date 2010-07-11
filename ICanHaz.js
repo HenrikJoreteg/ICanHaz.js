@@ -1,9 +1,11 @@
 /*
 ICanHaz.js version 1.0 -- by @HenrikJoreteg
-Licensed under the "You Must Follow Me on Twitter to use this" license. (Cause I'm a twitter whore like that)
+Licensed under the "You Must Follow Me on Twitter to use this" license. (Cause, apparently I'm a twitter whore like that)
 
 This is a simple template storage and retrieval system. 
+
 Templates are stored in the document as script elements with type="text/html"
+
 They are processed through Moustache.js for templating
 
 Dependencies:
