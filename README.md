@@ -2,6 +2,7 @@
 A simple/powerful approach for doing client-side templating with Mustache.js and jQuery.
 
 Thanks to the following, they did all the hard work, I just pieced it all together for this:
+
 - @jeresig for template storage approach
 - @janl for mustache.js
 - @natevw for his mustache.js tweaks
