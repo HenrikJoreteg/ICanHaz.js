@@ -1,7 +1,7 @@
 #ICanHaz.js
-A simple/powerful approach for doing client-side templating with Mustache.js and jQuery.
+A simple approach for doing client-side templating with Mustache.js and jQuery. So, this is how I'm now doing client-side templating for my projects at [&yet](http://andyet.net). I figured I'd share it, in case someone else finds it useful.
 
-Thanks to the following, they did all the hard work, I just pieced it all together for this:
+Thanks to the following, awesome devs. They did all the hard work I just pieced their ideas together:
 
 - @jeresig for template storage approach
 - @janl for mustache.js
