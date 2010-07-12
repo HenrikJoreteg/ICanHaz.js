@@ -1,12 +1,12 @@
 /*
 ICanHaz.js version 1.0 -- by @HenrikJoreteg
-Licensed under the "You Must Follow Me on Twitter to use this" license. (Cause, apparently I'm a twitter whore like that)
+Licensed under the "You should follow @HenrikJoreteg on Twitter to use this" license. (Cause, apparently I'm a twitter whore like that)
 
-This is a simple template storage and retrieval system. 
+This is a simple template storage and retrieval system.
 
-Templates are stored in the document as script elements with type="text/html"
+Templates are stored in the document as script elements with type="text/html". Cheers to @jeresig for this idea.
 
-They are processed through Moustache.js for templating
+They are processed through Moustache.js for templating.
 
 Dependencies:
 - Mustache.js
@@ -35,6 +35,8 @@ ICH.init = function () {
 			data = data || {};
 			return $(Mustache.to_html(ICH.ICanHaz_cache[title], data));
 		};
+		
+		$(this).remove();
 	});
 };
 
