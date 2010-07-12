@@ -8,9 +8,11 @@ Getting populated client side templates should be this easy:
     var user = ICH.user(user_data_object)
 
 ##The Problem:
-Building html elements in jQuery is ugly:
+Building html elements in jQuery is kinda ugly:
     hello_div = $('<div class="hello"><ul></ul></div>');
     hello_div.children('ul').append('<li>My list<li>');
+
+It get really problematic if what you're building is a lot longer or more complex than this example. Not to mention, it's also not a clean separation of concerns to write html in javascript.
 
 Mustache gives us an awesome JS templating solution, here's a snippet from their docs:
     
@@ -25,7 +27,7 @@ Mustache gives us an awesome JS templating solution, here's a snippet from their
     
     var html = Mustache.to_html(template, view);
 
-But the beauty fades when we're dealing with multi-line html because strings in JS can't include new-lines so everything has to be escaped. Then there's the problem of double vs. single quotes and before you know it, we're back in ugly land:
+But the beauty fades when we're dealing with multi-line html because strings in JS can't include new-lines so everything has to be escaped. Then there's the problem of double vs. single quotes and before you know it... we're back in ugly land:
     
     var template = '<div class="hello">\
         <span class="title">{{ title }}</span>
