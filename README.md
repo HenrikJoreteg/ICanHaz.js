@@ -37,7 +37,7 @@ But the beauty fades when we're dealing with multi-line html because strings in 
 ##I Can Haz Better Solution?
 YES!
 
-With ICanHaz you define your Mustache.js template snippets in script blocks of type="text/html" and give them an "id" as a title for your snippet (Which validates, btw). Then, on document ready ICanHaz.js builds a cache of all the templates and creates a function for each snippet. All you have to do is say to youself "I can haz user?":
+With ICanHaz.js you define your Mustache.js template snippets in script blocks of type="text/html" and give them an "id" as a title for your snippet (Which validates, btw). This approach was suggested by jQuery developer [@jeresig](http://twitter.com/jeresig) [on his blog](http://ejohn.org/blog/javascript-micro-templating/).Then, on document ready ICanHaz.js builds a cache of all the templates and creates a function for each snippet. All you have to do is say to youself for example "I can haz user?":
 
     var data = {
         first_name: "Henrik",
