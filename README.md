@@ -35,13 +35,14 @@ But the beauty fades when we're dealing with multi-line html because strings in 
 ##I Can Haz Better Solution?
 YES!
 
-With ICanHaz you define your Mustache.js template snippets in script blocks of type="text/html" and give them a class of "template" and a JS safe title attribute (Which validates, btw). Then on document ready ICanHaz.js builds a cache of all the templates and creates a function for each snippet. All you have to do is say to youself "I can haz user?":
+With ICanHaz you define your Mustache.js template snippets in script blocks of type="text/html" and give them an "id" as a title for your snippet (Which validates, btw). Then, on document ready ICanHaz.js builds a cache of all the templates and creates a function for each snippet. All you have to do is say to youself "I can haz user?":
 
     var data = {
         first_name: "Henrik",
         last_name: "Joreteg"
     }
     
+    // I can has user??
     html = ICH.user(data)
 
 At this point 'html' is jQuery object containing your complete html with your data injected.
@@ -50,16 +51,17 @@ At this point 'html' is jQuery object containing your complete html with your da
     <!DOCTYPE html>
     <html>
         <head>
-            <title></title>
+            <title>ICanHaz.js Demo</title>
             <script src="jquery-1.4.2.min.js" type="text/javascript"></script>
             <script src="mustache.js" type="text/javascript"></script>
             <script src="ICanHaz.js" type="text/javascript"></script>
             
-            <script class="template" title="user" type="text/html">
+            <script id="user" type="text/html">
                 <li>
                     <span class"name">Hello I'm {{ name }}</span>
                     <span class="twitter"><a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></span>
                     <span class="job">I work for the awesome {{ employer }} as a {{ job_title }}.</span>
+                    <span class="twitter">You should follow <a href="http://twitter.com/{{ other_twitter }}">@{{ other_twitter }}</a> too.</span>
                 </li>
             </script>
             
@@ -76,7 +78,8 @@ At this point 'html' is jQuery object containing your complete html with your da
                             name: "Henrik Joreteg",
                             twitter: "HenrikJoreteg",
                             employer: "&yet",
-                            job_title: "JS nerd"
+                            job_title: "JS nerd",
+                            other_twitter: "andyet"
                         };
                         
                         // Here's all the magic. This is 
@@ -89,7 +92,8 @@ At this point 'html' is jQuery object containing your complete html with your da
             </script>
         </head>
         <body>
-            <h1>User List</h1>
+            <h1>ICanHaz.js Demo</h1>
+            <h3>User List</h3>
             <button id="add_user">Add User</button>
             <ul id="user_list"></ul>
         </body>

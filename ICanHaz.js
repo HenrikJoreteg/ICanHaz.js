@@ -6,10 +6,10 @@ This is a simple template storage and retrieval system.
 
 Templates are stored in the document as script elements with type="text/html". Cheers to @jeresig for this idea.
 
-They are processed through Moustache.js for templating.
+They are processed through Moustache.js for templating. I'm using @natevw's fork of @janl's for this: (http://github.com/natevw/mustache.js). But either one is fine.
 
 Dependencies:
-- Mustache.js
+- Mustache.js 
 - jQuery
 
 Documentation at: http://github.com/HenrikJoreteg/ICanHaz.js
@@ -24,8 +24,8 @@ var ICH = {};
 ICH.init = function () {
 	ICH.ICanHaz_cache = {};
 	
-	$('.template').each(function () {
-		var title = $(this).attr('title');
+	$('script[type="text/html"]').each(function () {
+		var title = $(this).attr('id');
 		
 		// build our cache
 		ICH.ICanHaz_cache[title] = $(this).html(); 
