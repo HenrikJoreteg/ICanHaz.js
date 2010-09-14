@@ -1,26 +1,46 @@
 #ICanHaz.js
-A simple approach for doing client-side templating with Mustache.js and jQuery. So, this is how I'm now doing client-side templating for my projects at [&yet](http://andyet.net). I figured I'd share it, in case someone else finds it useful.
+A simple/powerful approach for doing client-side templating with Mustache.js and jQuery.
 
-Thanks to the following, awesome devs. They did all the hard work I just pieced their ideas together:
+##The Quick Demo:
 
-- @jeresig for template storage approach
-- @janl for mustache.js
-- @natevw for his mustache.js tweaks
+###Step 1. - Define your template
 
-##The One-line Demo:
-Getting populated client side templates should be this easy:
+    <script id="user" type="text/html">
+        <li>
+            <span class"name">Hello I'm {{ name }}</span>
+            <span class="twitter"><a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></span>
+        </li>
+    </script>
+
+###Step 2. - Retrieve your populated template:
     
     // I Can Haz User?
-    var user = ICH.user(user_data_object)
+    var user = ich.user(user_data_object)
 
-##The Problem:
-Building html elements in jQuery is kinda ugly:
+###Step 3. - There is no step 3!
+
+##Why would we need this?
+Because building html elements using javascript or jQuery is ugly:
+    
+    // obviously there's several ways to do this, but point is... it's ugly.
+    
+    // vanilla JS
+    hello_div = document.createElement('div');
+    hello_div.setAttribute('class', 'hello');
+    my_list = document.createElement('ul');
+    hello_div.appendChild(my_list);
+    list_item = document.createElement('li');
+    list_item.innerHTML = 'My list item';
+    my_list.appendChild(list_item);
+    
+    // jQuery
     hello_div = $('<div class="hello"><ul></ul></div>');
     hello_div.children('ul').append('<li>My list<li>');
+    
 
-It get really problematic if what you're building is a lot longer or more complex than this example. Not to mention, it's also not a clean separation of concerns to write html in javascript.
+It gets really problematic if what you're building is a lot longer or more complex than this example. Not to mention, it's also not a clean separation of concerns to write html in javascript.
 
-Mustache gives us an awesome JS templating solution, here's a snippet from their docs:
+Mustache.js gives us an awesome templating solution, here's a snippet from their docs:
     
     var view = {
       title: "Joe",
@@ -33,17 +53,17 @@ Mustache gives us an awesome JS templating solution, here's a snippet from their
     
     var html = Mustache.to_html(template, view);
 
-But the beauty fades when we're dealing with multi-line html because strings in JS can't include new-lines so everything has to be escaped. Then there's the problem of double vs. single quotes and before you know it... we're back in ugly land:
+But the beauty fades when we're dealing with multi-line html in the browser because strings in JS can't include new-lines so everything has to be escaped. Then there's the problem of double vs. single quotes and before you know it... we're back in ugly land:
     
     var template = '<div class="hello">\
-        <span class="title">{{ title }}</span>
+        <span class="title">{{ title }}</span>\
         <ul></ul>\
-    </div>\'
+    </div>'
 
 ##I Can Haz Better Solution?
 YES!
 
-With ICanHaz.js you define your mustache.js template snippets in script blocks of type="text/html" and give them an "id" as a title for your snippet (Which validates, btw). This approach was suggested by jQuery developer [@jeresig](http://twitter.com/jeresig) [on his blog](http://ejohn.org/blog/javascript-micro-templating/).Then, on document ready ICanHaz.js builds a cache of all the templates and creates a function for each snippet. All you have to do is say to youself for example "I can haz user?":
+With ICanHaz.js you define your Mustache.js template snippets in script blocks of type="text/html" and give them an "id" as a title for your snippet (Which validates, btw). This approach was suggested by jQuery developer [@jeresig](http://twitter.com/jeresig) [on his blog](http://ejohn.org/blog/javascript-micro-templating/).Then, on document ready ICanHaz.js builds a cache of all the templates and creates a function for each snippet. All you have to do is say to yourself for example "I can haz user?":
 
     var data = {
         first_name: "Henrik",
@@ -51,9 +71,12 @@ With ICanHaz.js you define your mustache.js template snippets in script blocks o
     }
     
     // I can has user??
-    html = ICH.user(data)
+    html = ich.user(data)
 
-At this point 'html' is jQuery object containing your complete html with your data injected.
+At this point 'html' is jQuery object containing your complete html with your data injected. 
+
+For each template you define, ICanHaz builds a retrieval function with the same name. 
+If you don't want a jQuery object but just want the populated string you can just pass in `true` as the second argument to get the raw string. This is useful if your template isn't producing html.
 
 ##Full Working Example
     <!DOCTYPE html>
@@ -90,8 +113,8 @@ At this point 'html' is jQuery object containing your complete html with your da
                             other_twitter: "andyet"
                         };
                         
-                        // Here's all the magic. I Can Haz User?
-                        user = ICH.user(user_data);
+                        // Here's all the magic.
+                        user = ich.user(user_data);
                         
                         // append it to the list, tada! Now go do something more useful with this.
                         $('#user_list').append(user);
