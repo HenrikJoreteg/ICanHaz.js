@@ -1,5 +1,5 @@
 /*!
-ICanHaz.js version 0.5 -- by @HenrikJoreteg
+ICanHaz.js version @VERSION@ -- by @HenrikJoreteg
 Licensed under the "You should follow @HenrikJoreteg on Twitter to use this" license. (Because, apparently I'm a twitter whore like that)
 
 This is a simple template storage and retrieval system.
@@ -27,7 +27,7 @@ var ich;
                 cache: {}
             };
         
-        this.VERSION = "0.5";
+        this.VERSION = "@VERSION@";
         
         // public function for adding templates after init
         this.addTemplate = function (name, templateString) {
