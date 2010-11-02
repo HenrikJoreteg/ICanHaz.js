@@ -24,30 +24,35 @@ var ich;
     function ICanHaz() {
         var that = this,
             spec = {
-                cache: {}
+                cache: {},
+                partials: {}
             };
         
         this.VERSION = "0.5";
         
         // public function for adding templates after init
-        this.addTemplate = function (name, templateString) {
+        this.addTemplate = function (name, templateString, addAsPartial) {
             if (spec.cache.hasOwnProperty(name)) {
                 throw "You've already got a template by the name: \"" + name + "\"";
             } else {
                 // cache it
                 spec.cache[name] = templateString;
                 
+                if(addAsPartial) partials[name] = templateString;
                 // build the corresponding public retrieval function
                 that[name] = function (data, raw) {
                     data = data || {};
-                    
-                    if (raw) {
-                        return Mustache.to_html(spec.cache[name], data);
-                    } else {
-                        return $(Mustache.to_html(spec.cache[name], data));
-                    }
+                    var result = Mustache.to_html(spec.cache[name], data, spec.partials);
+                    return raw ? result : $(result);
                 };
             }       
+        };
+        
+        // Call after adding a template to use that template as a partial.
+        // (See ich_test.js for a usage example)
+        this.useAsPartial = function(name) {
+        	if (!spec.cache.hasOwnProperty(name)) throw('You need to have a template named "'+name+'" before making it a partial');
+        	spec.partials[name] = spec.cache[name];
         };
         
         $('script[type="text/html"]').each(function () {
