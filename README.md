@@ -78,16 +78,16 @@ At this point 'html' is jQuery object containing your complete html with your da
 For each template you define (except partials), ICanHaz builds a retrieval function with the same name. 
 If you don't want a jQuery object but just want the populated string you can just pass in `true` as the second argument to get the raw string. This is useful if your template isn't producing html.
 
-### Partials? Im in ur templates, making macroz.
+### Im in ur templates, making macroz.
 
-To quote the [original mustache.js announcement](http://blog.couchone.com/post/622014913/mustache-js):
+ICanHaz.js also supports *partials*. To quote the [original mustache.js announcement](http://blog.couchone.com/post/622014913/mustache-js):
 > Partials are good for including often-used snippets, like navigation or headers and footer.
 > 
-> In mustache, partials are dead simple. You have a special tag {{>partial}} that you put where you want to insert the partial, create the partial that you want to be displayed and thatÕs it. It is just a basic replace or macro include mechanism. Nothing fancy.
+> In mustache, partials are dead simple. You have a special tag {{>partial}} that you put where you want to insert the partial, create the partial that you want to be displayed *and that's it*. It is just a basic replace or macro include mechanism. Nothing fancy.
 
 Just add `rels="partial"` when defining the template:
 
-	<!-- Not a partial -->
+	<!-- Main template, includes the "winnings" partial. -->
 	<script id="welcome" type="text/html">
 	<p>Welcome, {{name}}! {{>winnings}}</p>
 	</script>
