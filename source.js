@@ -37,8 +37,9 @@ var ich;
             } else {
                 // cache it
                 spec.cache[name] = templateString;
-                
-                if(addAsPartial) partials[name] = templateString;
+                if(addAsPartial) {
+                	spec.partials[name] = templateString;
+                }
                 // build the corresponding public retrieval function
                 that[name] = function (data, raw) {
                     data = data || {};
