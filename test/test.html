@@ -18,6 +18,15 @@
 <script id="test2" type="text/html">
 <span>Be vewwy vewwy quiet, we're hunting {{prey}}.</span>
 </script>
+<script id="welcome" type="text/html">
+<p>Welcome, {{name}}! {{>winnings}}</p>
+</script>
+<!-- Note: You will get leading and trailing whitespace around your
+	 template. This won't matter in most applications, but it can
+	 make testing difficult. -->
+<script id="winnings" rels="partial" type="text/html">
+You just won ${{value}} (which is ${{taxed_value}} after tax)
+</script>
 
 </head>
 <body>

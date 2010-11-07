@@ -48,21 +48,20 @@ var ich;
                 };
             }       
         };
-        
-        // Call after adding a template to use that template as a partial.
-        // (See ich_test.js for a usage example)
-        this.useAsPartial = function(name) {
-        	if (!spec.cache.hasOwnProperty(name)) throw('You need to have a template named "'+name+'" before making it a partial');
-        	spec.partials[name] = spec.cache[name];
-        };
-        
-        $('script[type="text/html"]').each(function () {
-            var title = $(this).attr('id');
-            
-            that.addTemplate(title, $(this).html());
-            
-            // remove the element from the dom
-            $(this).remove();
+                
+        $('script[type="text/html"]').each(function (i,element) {
+        	var script = $(element);
+            var title = script.attr('id');
+            var isPartial = script.attr('rels') == 'partial'; // n.b. lowercase
+            /* All elements may have newlines around them, but this can be problematic for
+             * partials (i.e. adding unexpected newlines in the middle of a template).
+             * So we'll strip any whitespace. If you want whitespace around a partial,
+             * add it in the parent, not the partial.
+             */
+            var text = isPartial ? $.trim(script.html()) : script.html();
+            that.addTemplate(title, text, isPartial);
+            // remove the element from the DOM
+            script.remove();
         });
     }
     
