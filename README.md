@@ -101,7 +101,7 @@ Then just call the main template normally.
 
 ###Adding templates/partials later
 
-Optionally, you can call `ich.addTemplate()` or `ich.addPartial()` to add templates and partials if you'd prefer to pull the from a server with ajax or whatnot.
+Optionally, you can call `ich.addTemplate(name, templateString)` or `ich.addPartial(name, templateString)` to add templates and partials if you'd prefer to pull the from a server with ajax or whatnot.
 
 ##Full Working Example
     <!DOCTYPE html>
@@ -154,3 +154,9 @@ Optionally, you can call `ich.addTemplate()` or `ich.addPartial()` to add templa
             <ul id="user_list"></ul>
         </body>
     </html>
+
+##Contributors
+ICanHaz was written by [@HenrikJoreteg](http://twitter.com/HenrikJoreteg.
+
+Other Contributors:
+- [rdclark](http://github.com/rdclark)
