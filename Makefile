@@ -5,6 +5,7 @@ VERSION = $(shell if [ -f version.txt ]; then cat version.txt; else VERSION=`git
 
 LIBS = js/libs
 
+#YUI_COMPRESSOR = /usr/local/bin/yuicompressor-2.4.2.jar
 
 ICH = ICanHaz.js
 ICH_MIN = ICanHaz.min.js
@@ -29,12 +30,11 @@ $(ICH_MIN): $(ICH)
 	@@echo
 	@@echo "Building" $(ICH_MIN) "..."
 ifdef YUI_COMPRESSOR
-	@@java -jar $(YUI_COMPRESSOR) --type js --nomunge\
-		$(ICH) > $(ICH_MIN)
+	@@java -jar $(YUI_COMPRESSOR) --type js $(ICH) > $(ICH_MIN)
 	@@echo $(ICH_MIN) "built."
 else
 	@@echo $(ICH_MIN) "not built."
 	@@echo "    YUI Compressor required to build minified version."
-	@@echo "    Please set YUI_COMPRESSOR to the path to the jar file."
+	@@echo "    Please set YUI_COMPRESSOR variable in 'make' file to the jar file."
 endif
 	@@echo
