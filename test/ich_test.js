@@ -7,7 +7,7 @@ test("creates function for template", function() {
 
 test("renders non-parameterized templates", function() {
 	expect(3);
-	equal(ich.test1({}, true), "\n<p>This is a test of the emergency broadcast system.</p>\n"); // raw text
+	equal(ich.test1({}, true), "<p>This is a test of the emergency broadcast system.</p>"); // raw text
 	var nodes = ich.test1({});
 	equal(typeof nodes, "object"); 
 	equal(nodes.text(), "This is a test of the emergency broadcast system."); 
@@ -25,7 +25,7 @@ test("renders ad hoc templates", function() {
 });
 
 // Newly added support for partials
-test("renders partials using rels='partial'", function() {
+test("renders partials from &lt;script&gt; tags with class=\"partial\"", function() {
 	// partials example from the Mustache README
 	expect(1);
 	var view = {
@@ -37,13 +37,12 @@ test("renders partials using rels='partial'", function() {
     		}
   		}
 	}
-	<!-- Note the newlines in the middle. This is the whitespace surrounding the partial in the script tag. --> 
 	equal(ich.welcome(view, true), "<p>Welcome, Joe! You just won $1000 (which is $600 after tax)</p>");
 });
 
 test("renders partials added at runtime", function() {
 	// partials example from the Mustache README
-	ich.addTemplate('winnings2', "You just won ${{value}} (which is ${{taxed_value}} after tax)", true);
+	ich.addPartial('winnings2', "You just won ${{value}} (which is ${{taxed_value}} after tax)");
 	ich.addTemplate('welcome2', "Welcome, {{name}}! {{>winnings2}}");
 	expect(1);
 	var view = {

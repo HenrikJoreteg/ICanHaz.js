@@ -30,16 +30,16 @@ var ich;
         
         this.VERSION = "@VERSION@";
         
-        // public function for adding templates after init
-        this.addTemplate = function (name, templateString, addAsPartial) {
+        // public function for adding templates
+        this.addTemplate = function (name, templateString) {
+            // We're enforcing uniqueness to avoid accidental template overwrites.
+            // If you want a different template, it should have a different name.
             if (spec.cache.hasOwnProperty(name)) {
-                throw "You've already got a template by the name: \"" + name + "\"";
+                throw "ICanHaz error? Yes. You've already got a template by the name: \"" + name + "\"";
             } else {
                 // cache it
                 spec.cache[name] = templateString;
-                if(addAsPartial) {
-                	spec.partials[name] = templateString;
-                }
+                
                 // build the corresponding public retrieval function
                 that[name] = function (data, raw) {
                     data = data || {};
@@ -48,18 +48,33 @@ var ich;
                 };
             }       
         };
+        
+        // public function for adding partials
+        this.addPartial = function (name, templateString) {
+            if (spec.partials.hasOwnProperty(name)) {
+                // check for partial
+                throw "ICanHaz error? Yes. You've already got a partial by the name: \" + name + \"";
+            } else {
+                spec.partials[name] = templateString;
+            }
+        };
                 
-        $('script[type="text/html"]').each(function (i,element) {
-        	var script = $(element);
-            var title = script.attr('id');
-            var isPartial = script.attr('rels') == 'partial'; // n.b. lowercase
-            /* All elements may have newlines around them, but this can be problematic for
-             * partials (i.e. adding unexpected newlines in the middle of a template).
-             * So we'll strip any whitespace. If you want whitespace around a partial,
-             * add it in the parent, not the partial.
-             */
-            var text = isPartial ? $.trim(script.html()) : script.html();
-            that.addTemplate(title, text, isPartial);
+        // Loop through and add templates.
+        // Whitespace at beginning and end of all templates inside <script> tags will 
+        // be trimmed. If you want whitespace around a partial, add it in the parent, 
+        // not the partial. Or do it explicitly using <br/> or &nbsp;
+        $('script[type="text/html"]').each(function () {
+            var script = $(this),
+                name = script.attr('id'),
+                text = script.html().trim(),
+                isPartial = script.attr('class').toLowerCase() === 'partial';
+            
+            if (isPartial) {
+                that.addPartial(name, text);
+            } else {
+                that.addTemplate(name, text);
+            }
+            
             // remove the element from the DOM
             script.remove();
         });
