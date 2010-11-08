@@ -156,7 +156,8 @@ Optionally, you can call `ich.addTemplate(name, templateString)` or `ich.addPart
     </html>
 
 ##Contributors
-ICanHaz was written by [@HenrikJoreteg](http://twitter.com/HenrikJoreteg.
+ICanHaz was conceived by [@HenrikJoreteg](http://twitter.com/HenrikJoreteg).
 
-Other Contributors:
-- [rdclark](http://github.com/rdclark)
+###Other Contributors:
+
+- [rdclark](http://github.com/rdclark) - Test coverage and partials support
