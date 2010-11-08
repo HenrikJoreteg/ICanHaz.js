@@ -78,14 +78,14 @@ At this point 'html' is jQuery object containing your complete html with your da
 For each template you define (except partials), ICanHaz builds a retrieval function with the same name. 
 If you don't want a jQuery object but just want the populated string you can just pass in `true` as the second argument to get the raw string. This is useful if your template isn't producing html.
 
-### I'm in ur templates, making macroz.
+###I'm in ur templates, making macroz.
 
-ICanHaz.js also supports *partials*. To quote the [original mustache.js announcement](http://blog.couchone.com/post/622014913/mustache-js):
+ICanHaz.js also supports mustache *partials*. To quote the [original mustache.js announcement](http://blog.couchone.com/post/622014913/mustache-js):
 > Partials are good for including often-used snippets, like navigation or headers and footer.
 > 
-> In mustache, partials are dead simple. You have a special tag {{>partial}} that you put where you want to insert the partial, create the partial that you want to be displayed *and that's it*. It is just a basic replace or macro include mechanism. Nothing fancy.
+> In mustache, partials are dead simple. You have a special tag `{{>partial}}` that you put where you want to insert the partial, create the partial that you want to be displayed *and that's it*. It is just a basic replace or macro include mechanism. Nothing fancy.
 
-Just add `class="partial"` when defining the template:
+So in ICanHaz, just add `class="partial"` when defining a template that should is a partial (It won't be added to your main template cache):
 
 	<!-- Main template, includes the "winnings" partial. -->
 	<script id="welcome" type="text/html">
@@ -93,11 +93,15 @@ Just add `class="partial"` when defining the template:
 	</script>
 	
 	<!-- Partial included by {{>winnings}} -->
-	<script id="winnings" rels="partial" type="text/html">
+	<script id="winnings" class="partial" type="text/html">
 	You just won ${{value}} (which is ${{taxed_value}} after tax)
 	</script>
 
-Then call the main template normally.
+Then just call the main template normally.
+
+###Adding templates/partials later
+
+Optionally, you can call `ich.addTemplate()` or `ich.addPartial()` to add templates and partials if you'd prefer to pull the from a server with ajax or whatnot.
 
 ##Full Working Example
     <!DOCTYPE html>
