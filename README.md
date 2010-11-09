@@ -63,7 +63,7 @@ But the beauty fades when we're dealing with multi-line html in the browser beca
 ##I Can Haz Better Solution?
 YES!
 
-With ICanHaz.js you define your Mustache.js template snippets in script blocks of type="text/html" and give them an "id" as a title for your snippet (Which validates, btw). This approach was suggested by jQuery developer [@jeresig](http://twitter.com/jeresig) [on his blog](http://ejohn.org/blog/javascript-micro-templating/).Then, on document ready ICanHaz.js builds a cache of all the templates and creates a function for each snippet. All you have to do is say to yourself for example "I can haz user?":
+With ICanHaz.js you define your Mustache.js template snippets in script blocks of type="text/html" and give them an "id" as a title for your snippet (which validates, btw). This approach was suggested by jQuery developer [@jeresig](http://twitter.com/jeresig) [on his blog](http://ejohn.org/blog/javascript-micro-templating/).Then, on document ready ICanHaz.js builds a cache of all the templates and creates a function for each snippet. All you have to do is say to yourself for example "I can haz user?":
 
     var data = {
         first_name: "Henrik",
@@ -85,19 +85,19 @@ ICanHaz.js also supports mustache *partials*. To quote the [original mustache.js
 > 
 > In mustache, partials are dead simple. You have a special tag `{{>partial}}` that you put where you want to insert the partial, create the partial that you want to be displayed *and that's it*. It is just a basic replace or macro include mechanism. Nothing fancy.
 
-So in ICanHaz, just add `class="partial"` when defining a template that should is a partial (It won't be added to your main template cache):
+Just add `class="partial"` when defining the template for a partial (It won't be added to your main template cache):
 
 	<!-- Main template, includes the "winnings" partial. -->
 	<script id="welcome" type="text/html">
 	<p>Welcome, {{name}}! {{>winnings}}</p>
 	</script>
 	
-	<!-- Partial included by {{>winnings}} -->
+	<!-- Partial included via {{>winnings}} -->
 	<script id="winnings" class="partial" type="text/html">
 	You just won ${{value}} (which is ${{taxed_value}} after tax)
 	</script>
 
-Then just call the main template normally.
+Then call the main template normally.
 
 ###Adding templates/partials later
 
