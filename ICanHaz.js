@@ -66,7 +66,7 @@ var ich;
         $('script[type="text/html"]').each(function () {
             var script = $(this),
                 name = script.attr('id'),
-                text = script.html().trim(),
+                text = $.trim(script.html()),
                 isPartial = script.attr('class').toLowerCase() === 'partial';
             
             if (isPartial) {
