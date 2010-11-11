@@ -5,7 +5,7 @@ VERSION = $(shell if [ -f version.txt ]; then cat version.txt; else VERSION=`git
 
 LIBS = js/libs
 
-#YUI_COMPRESSOR = /usr/local/bin/yuicompressor-2.4.2.jar
+YUI_COMPRESSOR = /usr/local/bin/yuicompressor-2.4.2.jar
 
 ICH = ICanHaz.js
 ICH_MIN = ICanHaz.min.js

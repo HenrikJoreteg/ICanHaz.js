@@ -161,3 +161,9 @@ ICanHaz was conceived by [@HenrikJoreteg](http://twitter.com/HenrikJoreteg).
 ###Other Contributors:
 
 - [rdclark](http://github.com/rdclark) - Test coverage and partials support
+- [kembuco](http://github.com/kembuco) - IE Bug found/squashed
+
+###Changelog
+
+- 0.6.1: Bug fix in trimming templates retrieved from `<script>` tags.
+- 0.6: Added support for partials
