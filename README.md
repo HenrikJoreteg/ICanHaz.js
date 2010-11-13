@@ -20,7 +20,7 @@ A simple/powerful approach for doing client-side templating with Mustache.js and
 ###Step 3. - There is no step 3!
 
 ##What else do I need to know?
-For simplicity and ease of use, ICanHaz includes Mustache.js (inside a closure) that way you can just include `<script src="ICanHaz.min.js"></script>` along with jQuery and you're off *haz*'ing stuffs. Luckily Mustache and Mustache.js are generously MIT licensed. Mr. Github founder himself Chris Wanstrath ([@defunkt](http://twitter.com/defunkt)) created mustache. Read the [mustache documentation](http://mustache.github.com) for more info.
+For simplicity and ease of use, ICanHaz includes [janl's Mustache.js v0.3.0](https://github.com/janl/mustache.js/tree/0.3.0), inside a closure) that way you can just include `<script src="ICanHaz.min.js"></script>` along with jQuery and you're off *haz*'ing stuffs. Luckily Mustache and Mustache.js are generously MIT licensed. Mr. Github founder himself Chris Wanstrath ([@defunkt](http://twitter.com/defunkt)) created mustache. Read the [mustache documentation](http://mustache.github.com) for more info. Then it was ported to JS by [Jan Lehnardt](https://github.com/janl).
 
 ##Why would we need this?
 Because building html elements using javascript or jQuery is ugly:

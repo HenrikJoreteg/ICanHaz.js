@@ -1,5 +1,5 @@
 /*!
-  ICanHaz.js version @VERSION@ -- by @HenrikJoreteg
+  ICanHaz.js -- by @HenrikJoreteg
 */
 /*global jQuery  */
 function ICanHaz() {

@@ -1,18 +1,12 @@
 /*!
 ICanHaz.js version 0.7 -- by @HenrikJoreteg
-Licensed under the "You should follow @HenrikJoreteg on Twitter to use this" license. (Because, apparently I'm a twitter whore like that)
-
-Documentation at: http://github.com/HenrikJoreteg/ICanHaz.js
-
-Dependencies:
-- jQuery
-
-ICanHaz comes bundled with mustache.js (MIT licensed) for convenience. Big ups to @defunkt for mustache and @janl for the js port. 
-https://github.com/janl/mustache.js/blob/master/LICENSE
+More info at: http://github.com/HenrikJoreteg/ICanHaz.js
 */
 (function ($) {
 /*!
-  mustache.js — Logic-less templates in JavaScript
+  mustache.js -- Logic-less templates in JavaScript
+
+  by @janl (MIT Licensed, https://github.com/janl/mustache.js/blob/master/LICENSE).
 
   See http://mustache.github.com/ for more info.
 */
@@ -98,7 +92,7 @@ var Mustache = function() {
     */
     render_partial: function(name, context, partials) {
       name = this.trim(name);
-      if(!partials || !partials[name]) {
+      if(!partials || partials[name] === undefined) {
         throw({message: "unknown_partial '" + name + "'"});
       }
       if(typeof(context[name]) != "object") {
@@ -118,7 +112,7 @@ var Mustache = function() {
       var that = this;
       // CSW - Added "+?" so it finds the tighest bound, not the widest
       var regex = new RegExp(this.otag + "(\\^|\\#)\\s*(.+)\\s*" + this.ctag +
-              "\\s*([\\s\\S]+?)" + this.otag + "\\/\\s*\\2\\s*" + this.ctag +
+              "\n*([\\s\\S]+?)" + this.otag + "\\/\\s*\\2\\s*" + this.ctag +
               "\\s*", "mg");
 
       // for each {{#foo}}{{/foo}} section do...
@@ -273,8 +267,11 @@ var Mustache = function() {
     create_context: function(_context) {
       if(this.is_object(_context)) {
         return _context;
-      } else if(this.pragmas["IMPLICIT-ITERATOR"]) {
-        var iterator = this.pragmas["IMPLICIT-ITERATOR"].iterator || ".";
+      } else {
+        var iterator = ".";
+        if(this.pragmas["IMPLICIT-ITERATOR"]) {
+          iterator = this.pragmas["IMPLICIT-ITERATOR"].iterator;
+        }
         var ctx = {};
         ctx[iterator] = _context;
         return ctx;
@@ -315,7 +312,7 @@ var Mustache = function() {
 
   return({
     name: "mustache.js",
-    version: "0.3.0-dev",
+    version: "0.3.0",
 
     /*
       Turns a template and view into HTML
@@ -332,7 +329,7 @@ var Mustache = function() {
     }
   });
 }();/*!
-  ICanHaz.js version 0.7 -- by @HenrikJoreteg
+  ICanHaz.js -- by @HenrikJoreteg
 */
 /*global jQuery  */
 function ICanHaz() {
