@@ -107,7 +107,10 @@ Optionally, you can call `ich.addTemplate(name, templateString)` or `ich.addPart
 Beyond the retrieval functions that ICanHaz creates based on template name, these additional methods exist.
 - `ich.addTemplate(name, mustacheTemplateString)`: Add new template. Could be useful if you prefer not to use `<script type="text/html">` approach or want to lazy load 'em from a server or whatnot.
 - `ich.addPartial(name, mustacheTemplateString)`: Add new partial, see above.
-- `ich.showAll()`: Returns a copy of the templates/partials in the internal cache. (good for seeing what you've actually got loaded)
+- `ich.showAll()`: Returns a copy of the templates/partials in the internal cache. (good for seeing what you've actually got loaded).
+- `ich.clearAll()`: Clears templates and partials from internal cache.
+- `ich.grabTemplates()`: Looks for any `<script type="text/html">` tags to make templates out of. Then removes those elements from the dom (this is the method that runs on `document ready` when `ich` first inits). 
+- `ich.refresh()`: Just clears all then grabs new templates. This could be useful for pages loaded with ajax that contain other templates.
 
 ##Full Working Example
     <!DOCTYPE html>
