@@ -101,7 +101,13 @@ Then call the main template normally.
 
 ###Adding templates/partials later
 
-Optionally, you can call `ich.addTemplate(name, templateString)` or `ich.addPartial(name, templateString)` to add templates and partials if you'd prefer to pull the from a server with ajax or whatnot.
+Optionally, you can call `ich.addTemplate(name, templateString)` or `ich.addPartial(name, templateString)` to add templates and partials if you'd prefer to pull the from a server with ajax or whatnot. You can even do `ich.grabTemplates` if you've loaded in some other page
+
+##Available Methods
+Beyond the retrieval functions that ICanHaz creates based on template name, these additional methods exist.
+- `ich.addTemplate(name, mustacheTemplateString)`: Add new template. Could be useful if you prefer not to use `<script type="text/html">` approach or want to lazy load 'em from a server or whatnot.
+- `ich.addPartial(name, mustacheTemplateString)`: Add new partial, see above.
+- `ich.showAll()`: Returns a copy of the templates/partials in the internal cache. (good for seeing what you've actually got loaded)
 
 ##Full Working Example
     <!DOCTYPE html>
