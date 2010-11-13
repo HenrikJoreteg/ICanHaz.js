@@ -19,6 +19,9 @@ A simple/powerful approach for doing client-side templating with Mustache.js and
 
 ###Step 3. - There is no step 3!
 
+##What else do I need to know?
+For simplicity and ease of use, ICanHaz includes Mustache.js (inside a closure) that way you can just include `<script src="ICanHaz.min.js"></script>` along with jQuery and you're off *haz*'ing stuffs. Luckily Mustache and Mustache.js are generously MIT licensed. Mr. Github founder himself Chris Wanstrath ([@defunkt](http://twitter.com/defunkt)) created mustache. Read the [mustache documentation](http://mustache.github.com) for more info.
+
 ##Why would we need this?
 Because building html elements using javascript or jQuery is ugly:
     
@@ -174,11 +177,17 @@ ICanHaz was conceived by [@HenrikJoreteg](http://twitter.com/HenrikJoreteg).
 - [rdclark](http://github.com/rdclark) - Test coverage and partials support
 - [kembuco](http://github.com/kembuco) - IE Bug found/squashed
 
+###Tested in:
+I've personally run the tests in the following browsers. But basically, there's no reason it shouldn't work in any browser that jQuery and Mustache support.
+- IE 6, 8 (and 8 in compat. mode, which is *supposed* to be like 7)
+- FF 3.6
+- Chrome 7
+- Safari 5
+
 ###Changelog
 - 0.7: 
     - Now includes mustache.js so the only dependency is jQuery.
-    - Exposed `grabTemplates`
-    - Attaches `ich` to `window` directly
-    - Added `showAll` method for viewing a copy of the internal template hash.
+    - Attaches `ich` to `window` directly.
+    - Added `showAll`, `clearAll`, `grabTemplates`, `refresh` to public api.
 - 0.6.1: Bug fix in trimming templates retrieved from `<script>` tags.
 - 0.6: Added support for partials

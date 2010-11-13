@@ -1,21 +1,17 @@
 /*!
-ICanHaz.js version @VERSION@ -- by @HenrikJoreteg
+ICanHaz.js version 0.7 -- by @HenrikJoreteg
 Licensed under the "You should follow @HenrikJoreteg on Twitter to use this" license. (Because, apparently I'm a twitter whore like that)
 
-This is a simple template storage and retrieval system.
-
-Templates are stored in the document as script elements with type="text/html". Cheers to @jeresig for this idea.
-
-They are processed through Moustache.js for templating.
+Documentation at: http://github.com/HenrikJoreteg/ICanHaz.js
 
 Dependencies:
 - jQuery
 
-Documentation at: http://github.com/HenrikJoreteg/ICanHaz.js
-
+ICanHaz comes bundled with mustache.js (MIT licensed) for convenience. Big ups to @defunkt for mustache and @janl for the js port. 
+https://github.com/janl/mustache.js/blob/master/LICENSE
 */
 (function ($) {
-/*
+/*!
   mustache.js — Logic-less templates in JavaScript
 
   See http://mustache.github.com/ for more info.
@@ -335,7 +331,9 @@ var Mustache = function() {
       }
     }
   });
-}();// JSLint Config
+}();/*!
+  ICanHaz.js version 0.7 -- by @HenrikJoreteg
+*/
 /*global jQuery  */
 function ICanHaz() {
     var that = this,

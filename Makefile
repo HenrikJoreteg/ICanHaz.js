@@ -19,9 +19,9 @@ min: $(ICH_MIN)
 $(ICH): $(BASE_FILES)
 	@@echo
 	@@echo "Building" $(ICH) "..."
-	@@cat source/intro.js > $(ICH)
+	@@cat source/intro.js | sed -e 's/@VERSION@/$(VERSION)/' > $(ICH)
 	@@echo "(function ($$) {" >> $(ICH)
-	@@cat $(BASE_FILES) | sed -e s/@VERSION@/$(VERSION)/ >> $(ICH)
+	@@cat $(BASE_FILES) | sed -e 's/@VERSION@/$(VERSION)/' >> $(ICH)
 	@@echo "}(jQuery));" >> $(ICH)
 	@@echo $(ICH) "built."
 	@@echo

@@ -1,4 +1,6 @@
-// JSLint Config
+/*!
+  ICanHaz.js version @VERSION@ -- by @HenrikJoreteg
+*/
 /*global jQuery  */
 function ICanHaz() {
     var that = this,
