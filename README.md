@@ -20,7 +20,7 @@ A simple/powerful approach for doing client-side templating with Mustache.js and
 ###Step 3. - There is no step 3!
 
 ##What else do I need to know?
-For simplicity and ease of use, ICanHaz includes [janl's Mustache.js v0.3.0](https://github.com/janl/mustache.js/tree/0.3.0), inside a closure) that way you can just include `<script src="ICanHaz.min.js"></script>` along with jQuery and you're off *haz*'ing stuffs. Luckily Mustache and Mustache.js are generously MIT licensed. Mr. Github founder himself Chris Wanstrath ([@defunkt](http://twitter.com/defunkt)) created mustache. Read the [mustache documentation](http://mustache.github.com) for more info. Then it was ported to JS by [Jan Lehnardt](https://github.com/janl).
+For simplicity and ease of use, ICanHaz includes [janl's Mustache.js v0.3.0](https://github.com/janl/mustache.js/tree/0.3.0) (inside a closure) that way you can just include ICanHaz along with jQuery and then YOU CAN HAZ stuffs. Luckily Mustache and Mustache.js are generously MIT licensed. Mr. Github founder himself Chris Wanstrath ([@defunkt](http://twitter.com/defunkt)) created mustache. Read the [mustache documentation](http://mustache.github.com) for more info. Then it was ported to JS by [Jan Lehnardt](https://github.com/janl).
 
 ##Why would we need this?
 Because building html elements using javascript or jQuery is ugly:
@@ -108,6 +108,7 @@ Optionally, you can call `ich.addTemplate(name, templateString)` or `ich.addPart
 
 ##Available Methods
 Beyond the retrieval functions that ICanHaz creates based on template name, these additional methods exist.
+
 - `ich.addTemplate(name, mustacheTemplateString)`: Add new template. Could be useful if you prefer not to use `<script type="text/html">` approach or want to lazy load 'em from a server or whatnot.
 - `ich.addPartial(name, mustacheTemplateString)`: Add new partial, see above.
 - `ich.showAll()`: Returns a copy of the templates/partials in the internal cache. (good for seeing what you've actually got loaded).
