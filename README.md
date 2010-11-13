@@ -126,7 +126,8 @@ Beyond the retrieval functions that ICanHaz creates based on template names, the
             
             <script id="user" type="text/html">
                 <li>
-                    <p>Howdy I&apos;m <span class="twitter"><a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></span>. I work for {{ employer }} as a {{ job_title }}. You should follow <a href="http://twitter.com/{{ other_twitter }}">@{{ other_twitter }}</a> too.</p>
+                    <p>Howdy I&apos;m <a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></p>
+                    <p>I work for {{ employer }} as a {{ job_title }}.</p>
                 </li>
             </script>
             
@@ -143,8 +144,7 @@ Beyond the retrieval functions that ICanHaz creates based on template names, the
                             name: "Henrik Joreteg",
                             twitter: "HenrikJoreteg",
                             employer: "&yet",
-                            job_title: "JS nerd",
-                            other_twitter: "andyet"
+                            job_title: "JS nerd"
                         };
     
                         // Here's all the magic.
