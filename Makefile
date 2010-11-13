@@ -1,16 +1,14 @@
 SHELL = /bin/bash
 
-#VERSION =`git rev-list HEAD -n1`
-VERSION = $(shell if [ -f version.txt ]; then cat version.txt; else VERSION=`git rev-list HEAD -n1`; echo $${VERSION:0:7}; fi)
-
-LIBS = js/libs
+VERSION = $(shell cat version.txt;)
 
 YUI_COMPRESSOR = /usr/local/bin/yuicompressor-2.4.2.jar
 
 ICH = ICanHaz.js
 ICH_MIN = ICanHaz.min.js
 
-BASE_FILES = source.js
+BASE_FILES = source/mustache.js \
+	source/main.js
 
 all: normal min
 
@@ -21,7 +19,10 @@ min: $(ICH_MIN)
 $(ICH): $(BASE_FILES)
 	@@echo
 	@@echo "Building" $(ICH) "..."
-	@@cat $(BASE_FILES) | sed -e 's/@VERSION@/$(VERSION)/' > $(ICH)
+	@@cat source/intro.js > $(ICH)
+	@@echo "(function ($$) {" >> $(ICH)
+	@@cat $(BASE_FILES) | sed -e s/@VERSION@/$(VERSION)/ >> $(ICH)
+	@@echo "}(jQuery));" >> $(ICH)
 	@@echo $(ICH) "built."
 	@@echo
 

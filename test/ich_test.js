@@ -56,3 +56,39 @@ test("renders partials added at runtime", function() {
 	}
 	equal(ich.welcome2(view, true), 'Welcome, Joe! You just won $1000 (which is $600 after tax)');
 });
+
+test("showAll shouldn't let you edit actual templates", function () {
+    var welcome = ich.showAll().templates.welcome;
+    
+    ich.showAll().templates.welcome = "something new";
+    notEqual(ich.welcome(), "something new", "the template should not have changed");
+});
+
+test("clearAll should wipe 'em out", function () {
+    ich.clearAll();
+    
+    ok($.isEmptyObject(ich.showAll().templates));
+    ok($.isEmptyObject(ich.showAll().partials));
+    
+    equal(ich.hasOwnProperty('welcome2'), false, "welcome2 template gone?");
+});
+
+test("grabTemplates that are loaded in later", function () {
+    // not recommended use, but should work nonetheless
+    $('<script id="flint" type="text/html">yabba {{ something }} doo!</script>').appendTo('head');
+    
+    ich.grabTemplates();
+    equal(ich.flint({something: 'dabba'}, true), "yabba dabba doo!", "should have new template");
+});
+
+test("refresh should empty then grab new", function () {
+    // not recommended use, but should work nonetheless
+    $('<script id="mother" type="text/html">your mother was a {{ something }}...</script>').appendTo('head');
+    
+    ich.refresh();
+    
+    equal(ich.mother({something: 'hampster'}, true), "your mother was a hampster...", "should have new template");
+    equal(ich.hasOwnProperty('flint'), false, "flint template should be gone");
+});
+
+

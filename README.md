@@ -108,16 +108,12 @@ Optionally, you can call `ich.addTemplate(name, templateString)` or `ich.addPart
     <html>
         <head>
             <title>ICanHaz.js Demo</title>
-            <script src="jquery-1.4.2.min.js" type="text/javascript"></script>
-            <script src="mustache.js" type="text/javascript"></script>
-            <script src="ICanHaz.js" type="text/javascript"></script>
+            <script src="test/jquery-1.4.4.min.js" type="text/javascript"></script>
+            <script src="ICanHaz.min.js" type="text/javascript"></script>
             
             <script id="user" type="text/html">
                 <li>
-                    <span class"name">Hello I'm {{ name }}</span>
-                    <span class="twitter"><a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></span>
-                    <span class="job">I work for the awesome {{ employer }} as a {{ job_title }}.</span>
-                    <span class="twitter">You should follow <a href="http://twitter.com/{{ other_twitter }}">@{{ other_twitter }}</a> too.</span>
+                    <p>Howdy I&apos;m <span class="twitter"><a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></span>. I work for {{ employer }} as a {{ job_title }}. You should follow <a href="http://twitter.com/{{ other_twitter }}">@{{ other_twitter }}</a> too.</p>
                 </li>
             </script>
             
@@ -137,7 +133,7 @@ Optionally, you can call `ich.addTemplate(name, templateString)` or `ich.addPart
                             job_title: "JS nerd",
                             other_twitter: "andyet"
                         };
-                        
+    
                         // Here's all the magic.
                         user = ich.user(user_data);
                         
@@ -146,6 +142,12 @@ Optionally, you can call `ich.addTemplate(name, templateString)` or `ich.addPart
                     });
                 });
             </script>
+            
+            <style>
+                body {
+                    font-family: Helvetica;
+                }
+            </style>
         </head>
         <body>
             <h1>ICanHaz.js Demo</h1>
@@ -164,6 +166,10 @@ ICanHaz was conceived by [@HenrikJoreteg](http://twitter.com/HenrikJoreteg).
 - [kembuco](http://github.com/kembuco) - IE Bug found/squashed
 
 ###Changelog
-
+- 0.7: 
+    - Now includes mustache.js so the only dependency is jQuery.
+    - Exposed `grabTemplates`
+    - Attaches `ich` to `window` directly
+    - Added `showAll` method for viewing a copy of the internal template hash.
 - 0.6.1: Bug fix in trimming templates retrieved from `<script>` tags.
 - 0.6: Added support for partials
