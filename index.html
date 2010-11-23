@@ -9,26 +9,71 @@
 	
 	<style type="text/css">
 		body {
-  		margin-top: 1.0em;
-  		background-color: #ededed;
-		font-family: Helvetica,Arial,FreeSans;
-  		color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #cbcbcb; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #cbcbcb; }
-    h3 { text-align: center; color: #cbcbcb; }
-    a { color: #999; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
+			margin-top: 1.0em;
+			background-color: #ededed;
+			font-family: Helvetica, Arial, FreeSans;
+			color: #000000;
+	 	}
+	 	
+		#container {
+			margin: 0 auto;
+	   	width: 700px;
+	 	}
+	 	
+		h1 { 
+			font-size: 3.8em; 
+			color: #cbcbcb; 
+			margin-bottom: 3px; 
+		}
+		
+		h1 .small { 
+			font-size: 0.4em; 
+		}
+		
+		h1 a { 
+			text-decoration: none 
+		}
+		
+		h2 { 
+			font-size: 1.5em; color: #cbcbcb; 
+		}
+		
+		h3 { 
+	 		text-align: center; color: #cbcbcb; 
+	 	}
+	 	
+		a { 
+			color: #999; 
+		}
+		
+		.description { 
+			font-size: 1.2em; 
+			margin-bottom: 30px; 
+			margin-top: 30px; 
+			font-style: italic;
+		}
+	
+		.download { 
+			float: right; 
+		}
+		
+		pre { 
+			background: #000; 
+			color: #fff; 
+			padding: 15px;
+		}
+		
+		hr { 
+			border: 0; 
+			width: 80%; 
+			border-bottom: 1px solid #aaa
+		}
+		
+		.footer { 
+			text-align:center; 
+			padding-top:30px; 
+			font-style: italic; 
+		}
 	</style>
 	
 </head>
@@ -71,6 +116,344 @@
 
     <div class="footer">
       get the source code on GitHub : <a href="http://github.com/andyet/ICanHaz.js">andyet/ICanHaz.js</a>
+    </div>
+    
+    <div id="readme">
+            <h1>ICanHaz.js</h1>
+
+            <p>A simple/powerful approach for doing client-side
+            templating with Mustache.js and jQuery.</p>
+
+            <h2>The Quick Demo:</h2>
+
+            <h3>Step 1. - Define your template</h3>
+            <pre>
+<code>&lt;script id="user" type="text/html"&gt;
+    &lt;li&gt;
+        &lt;span class"name"&gt;Hello I'm {{ name }}&lt;/span&gt;
+        &lt;span class="twitter"&gt;&lt;a href="http://twitter.com/{{ twitter }}"&gt;@{{ twitter }}&lt;/a&gt;&lt;/span&gt;
+    &lt;/li&gt;
+&lt;/script&gt;
+</code>
+				</pre>
+
+            <h3>Step 2. - Retrieve your populated template:</h3>
+            <pre>
+<code>// I Can Haz User?
+var user = ich.user(user_data_object)
+</code>
+				</pre>
+
+            <h3>Step 3. - There is no step 3!</h3>
+
+            <h2>What else do I need to know?</h2>
+
+            <p>For simplicity and ease of use, ICanHaz includes
+            <a href=
+            "https://github.com/janl/mustache.js/tree/0.3.0">janl's
+            Mustache.js v0.3.0</a> (inside a closure) that way you
+            can just include ICanHaz along with jQuery and then YOU
+            CAN HAZ stuffs. Luckily Mustache and Mustache.js are
+            generously MIT licensed. Mr. Github founder himself
+            Chris Wanstrath (<a href=
+            "http://twitter.com/defunkt">@defunkt</a>) created
+            mustache. Read the <a href=
+            "http://mustache.github.com">mustache documentation</a>
+            for more info. Then it was ported to JS by <a href=
+            "https://github.com/janl">Jan Lehnardt</a>.</p>
+
+            <h2>Why would we need this?</h2>
+
+            <p>Because building html elements using javascript or
+            jQuery is ugly:</p>
+            <pre>
+<code>// obviously there's several ways to do this, but point is... it's ugly.
+
+// vanilla JS
+hello_div = document.createElement('div');
+hello_div.setAttribute('class', 'hello');
+my_list = document.createElement('ul');
+hello_div.appendChild(my_list);
+list_item = document.createElement('li');
+list_item.innerHTML = 'My list item';
+my_list.appendChild(list_item);
+
+// jQuery
+hello_div = $('&lt;div class="hello"&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;');
+hello_div.children('ul').append('&lt;li&gt;My list&lt;li&gt;');
+</code>
+				</pre>
+
+            <p>It gets really problematic if what you're building
+            is a lot longer or more complex than this example. Not
+            to mention, it's also not a clean separation of
+            concerns to write html in javascript.</p>
+
+            <p>Mustache.js gives us an awesome templating solution,
+            here's a snippet from their docs:</p>
+            <pre>
+<code>var view = {
+  title: "Joe",
+  calc: function() {
+    return 2 + 4;
+  }
+}
+
+var template = "{{title}} spends {{calc}}";
+
+var html = Mustache.to_html(template, view);
+</code>
+				</pre>
+
+            <p>But the beauty fades when we're dealing with
+            multi-line html in the browser because strings in JS
+            can't include new-lines so everything has to be
+            escaped. Then there's the problem of double vs. single
+            quotes and before you know it... we're back in ugly
+            land:</p>
+            <pre>
+<code>var template = '&lt;div class="hello"&gt;\
+    &lt;span class="title"&gt;{{ title }}&lt;/span&gt;\
+    &lt;ul&gt;&lt;/ul&gt;\
+&lt;/div&gt;'
+</code>
+</pre>
+
+            <h2>I Can Haz Better Solution?</h2>
+
+            <p>YES!</p>
+
+            <p>With ICanHaz.js you define your Mustache.js template
+            snippets in script blocks of type="text/html" and give
+            them an "id" as a title for your snippet (which
+            validates, btw). This approach was suggested by jQuery
+            developer <a href=
+            "http://twitter.com/jeresig">@jeresig</a> <a href=
+            "http://ejohn.org/blog/javascript-micro-templating/">on
+            his blog</a>.Then, on document ready ICanHaz.js builds
+            a cache of all the templates and creates a function for
+            each snippet. All you have to do is say to yourself for
+            example "I can haz user?":</p>
+            <pre>
+<code>var data = {
+    first_name: "Henrik",
+    last_name: "Joreteg"
+}
+
+// I can has user??
+html = ich.user(data)
+</code>
+</pre>
+
+            <p>At this point 'html' is jQuery object containing
+            your complete html with your data injected.</p>
+
+            <p>For each template you define (except partials),
+            ICanHaz builds a retrieval function with the same name.
+            If you don't want a jQuery object but just want the
+            populated string you can just pass in <code>true</code>
+            as the second argument to get the raw string. This is
+            useful if your template isn't producing html.</p>
+
+            <h3>I'm in ur templates, making macroz.</h3>
+
+            <p>ICanHaz.js also supports mustache <em>partials</em>.
+            To quote the <a href=
+            "http://blog.couchone.com/post/622014913/mustache-js">original
+            mustache.js announcement</a>:</p>
+
+            <blockquote>
+                <p>Partials are good for including often-used
+                snippets, like navigation or headers and
+                footer.</p>
+
+                <p>In mustache, partials are dead simple. You have
+                a special tag <code>{{&gt;partial}}</code> that you
+                put where you want to insert the partial, create
+                the partial that you want to be displayed <em>and
+                that's it</em>. It is just a basic replace or macro
+                include mechanism. Nothing fancy.</p>
+            </blockquote>
+
+            <p>Just add <code>class="partial"</code> when defining
+            the template for a partial (It won't be added to your
+            main template cache):</p>
+            <pre>
+<code>&lt;!-- Main template, includes the "winnings" partial. --&gt;
+&lt;script id="welcome" type="text/html"&gt;
+&lt;p&gt;Welcome, {{name}}! {{&gt;winnings}}&lt;/p&gt;
+&lt;/script&gt;
+
+&lt;!-- Partial included via {{&gt;winnings}} --&gt;
+&lt;script id="winnings" class="partial" type="text/html"&gt;
+You just won ${{value}} (which is ${{taxed_value}} after tax)
+&lt;/script&gt;
+</code>
+</pre>
+
+            <p>Then call the main template normally.</p>
+
+            <h3>Adding templates/partials later</h3>
+
+            <p>Optionally, you can call <code>ich.addTemplate(name,
+            templateString)</code> or <code>ich.addPartial(name,
+            templateString)</code> to add templates and partials if
+            you'd prefer to pull the from a server with ajax or
+            whatnot. You can even do <code>ich.grabTemplates</code>
+            if you've loaded in some other page</p>
+
+            <h2>Available Methods</h2>
+
+            <p>Beyond the retrieval functions that ICanHaz creates
+            based on template names, these additional methods
+            exist.</p>
+
+            <ul>
+                <li><code>ich.addTemplate(name,
+                mustacheTemplateString)</code>: Add new template.
+                Could be useful if you prefer not to use
+                <code>&lt;script type="text/html"&gt;</code>
+                approach or want to lazy load 'em from a server or
+                whatnot.</li>
+
+                <li><code>ich.addPartial(name,
+                mustacheTemplateString)</code>: Add new partial,
+                see above.</li>
+
+                <li><code>ich.showAll()</code>: Returns a copy of
+                the templates/partials in the internal cache. (good
+                for seeing what you've actually got loaded).</li>
+
+                <li><code>ich.clearAll()</code>: Clears templates
+                and partials from internal cache.</li>
+
+                <li><code>ich.grabTemplates()</code>: Looks for any
+                <code>&lt;script type="text/html"&gt;</code> tags
+                to make templates out of. Then removes those
+                elements from the dom (this is the method that runs
+                on <code>document ready</code> when
+                <code>ich</code> first inits).</li>
+
+                <li><code>ich.refresh()</code>: Just clears all
+                then grabs new templates. This could be useful for
+                pages loaded with ajax that contain other
+                templates.</li>
+            </ul>
+
+            <h2>Full Working Example</h2>
+            <pre>
+<code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;ICanHaz.js Demo&lt;/title&gt;
+        &lt;script src="test/jquery-1.4.4.min.js" type="text/javascript"&gt;&lt;/script&gt;
+        &lt;script src="ICanHaz.min.js" type="text/javascript"&gt;&lt;/script&gt;
+
+        &lt;script id="user" type="text/html"&gt;
+            &lt;li&gt;
+                &lt;p&gt;Howdy I&amp;apos;m &lt;a href="http://twitter.com/{{ twitter }}"&gt;@{{ twitter }}&lt;/a&gt;&lt;/p&gt;
+                &lt;p&gt;I work for {{ employer }} as a {{ job_title }}.&lt;/p&gt;
+            &lt;/li&gt;
+        &lt;/script&gt;
+
+        &lt;script type="text/javascript"&gt;
+            // when the dom's ready
+            $(document).ready(function () {
+                // add a simple click handler for the "add user" button.
+                $('#add_user').click(function () {
+                    var user_data, user;
+
+                    // build a simple user object, in a real app this would probably come from a server
+                    // somewhere. Otherwise hardcoding here is just silly.
+                    user_data = {
+                        name: "Henrik Joreteg",
+                        twitter: "HenrikJoreteg",
+                        employer: "&amp;yet",
+                        job_title: "JS nerd"
+                    };
+
+                    // Here's all the magic.
+                    user = ich.user(user_data);
+
+                    // append it to the list, tada! Now go do something more useful with this.
+                    $('#user_list').append(user);
+                });
+            });
+        &lt;/script&gt;
+
+        &lt;style&gt;
+            body {
+                font-family: Helvetica;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;ICanHaz.js Demo&lt;/h1&gt;
+        &lt;h3&gt;User List&lt;/h3&gt;
+        &lt;button id="add_user"&gt;Add User&lt;/button&gt;
+        &lt;ul id="user_list"&gt;&lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+
+            <h2>Contributors</h2>
+
+            <p>ICanHaz was conceived by <a href=
+            "http://twitter.com/HenrikJoreteg">@HenrikJoreteg</a>.</p>
+
+            <h3>Other Contributors:</h3>
+
+            <ul>
+                <li><a href="http://github.com/rdclark">rdclark</a>
+                - Test coverage and partials support</li>
+
+                <li><a href="http://github.com/kembuco">kembuco</a>
+                - IE Bug found/squashed</li>
+            </ul>
+
+            <h3>Tested in:</h3>
+
+            <p>I've personally run the tests in the following
+            browsers. But basically, there's no reason it shouldn't
+            work in any browser that jQuery and Mustache
+            support.</p>
+
+            <ul>
+                <li>IE 6, 8 (and 8 in compat. mode, which is
+                <em>supposed</em> to be like 7)</li>
+
+                <li>FF 3.6</li>
+
+                <li>Chrome 7</li>
+
+                <li>Safari 5</li>
+            </ul>
+
+            <h3>Changelog</h3>
+
+            <ul>
+                <li>0.7:
+
+                    <ul>
+                        <li>Now includes mustache.js so the only
+                        dependency is jQuery.</li>
+
+                        <li>Attaches <code>ich</code> to
+                        <code>window</code> directly.</li>
+
+                        <li>Added <code>showAll</code>,
+                        <code>clearAll</code>,
+                        <code>grabTemplates</code>,
+                        <code>refresh</code> to public api.</li>
+                    </ul>
+                </li>
+
+                <li>0.6.1: Bug fix in trimming templates retrieved
+                from <code>&lt;script&gt;</code> tags.</li>
+
+                <li>0.6: Added support for partials</li>
+            </ul>
     </div>
 
   </div>
