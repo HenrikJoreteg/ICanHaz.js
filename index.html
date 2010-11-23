@@ -6,74 +6,144 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 	<title>andyet/ICanHaz.js @ GitHub</title>
-	
+	<script type="text/javascript" src="http://use.typekit.com/cup4mvz.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<style type="text/css">
 		body {
 			margin-top: 1.0em;
 			background-color: #ededed;
-			font-family: Helvetica, Arial, FreeSans;
-			color: #000000;
+			background-color: #fff;
+			background-image: url(http://andyet.net/images/header.png);
+			background-repeat: no-repeat;
+			font-family: "Helvetica Nueue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			color: #555;
+			font-size: 14px;
+			line-height: 140%;
+			padding-bottom: 100px;
 	 	}
 	 	
 		#container {
 			margin: 0 auto;
-	   	width: 700px;
+	   	width: 800px;
+	   	position: relative;
+	 	}
+	 	
+	 	.download {
+	 		position: absolute;
+	 		top: 210px;
+	 		right: 0
+	 	}
+	 	
+	 	#title {
+	 		margin-top: 200px;
+	 	}
+	 	
+	 	#intro {
+	 		font-size: 18px;
+	 		margin-bottom: 60px;
 	 	}
 	 	
 		h1 { 
-			font-size: 3.8em; 
-			color: #cbcbcb; 
+			font-size: 100px; 
+			color: #bbb; 
 			margin-bottom: 3px; 
-		}
-		
-		h1 .small { 
-			font-size: 0.4em; 
+			font-family: "league-gothic-1", "league-gothic-2", sans-serif;
+			text-transform: uppercase;
 		}
 		
 		h1 a { 
-			text-decoration: none 
+			text-decoration: none;
+		}
+		
+		h1 .dot {
+			color: #c0c0c0;
+		}
+		
+		h1 .js {
+			color: #cfcfcf;
 		}
 		
 		h2 { 
-			font-size: 1.5em; color: #cbcbcb; 
+			font-size: 40px;
+			color: #cbcbcb; 
+			font-family: "league-gothic-1", "league-gothic-2", sans-serif;
+			text-transform: uppercase;
+			margin-top: 60px;
+			margin-bottom: 0px;
 		}
 		
 		h3 { 
-	 		text-align: center; color: #cbcbcb; 
+			font-family: "Helvetica Nueue", "Helvetica Neue";
+	 		text-transform: uppercase;
+	 		font-weight: 300;
+	 		color: #000;
+	 		margin-bottom: 0;
+	 		margin-top: 40px;
 	 	}
 	 	
 		a { 
 			color: #999; 
 		}
 		
-		.description { 
-			font-size: 1.2em; 
-			margin-bottom: 30px; 
-			margin-top: 30px; 
-			font-style: italic;
-		}
-	
 		.download { 
-			float: right; 
+			float: right;
 		}
 		
 		pre { 
-			background: #000; 
+			background-color: #555;
+			background-image: url(http://andyet.net/images/noise_dk.png);
 			color: #fff; 
 			padding: 15px;
+			font-size: 12px;
+			margin: 5px 0 20px 0;
+			border-top: 1px solid #333;
+			border-bottom: 1px solid #ccc;
+			line-height: 140%;
+		}
+		
+		code {
+			background: #eee;
+			color: #000;
+		}
+		
+		pre code {
+			background: transparent;
+			color: #fff;
 		}
 		
 		hr { 
 			border: 0; 
 			width: 80%; 
-			border-bottom: 1px solid #aaa
+			border-bottom: 1px solid #fff;
+			border-top: 1px solid #ccc;
+			margin-top: 40px;
+			margin: 60px auto 80px auto;
 		}
 		
 		.footer { 
 			text-align:center; 
-			padding-top:30px; 
-			font-style: italic; 
+			padding-top:30px;
 		}
+		
+		#from_andyet {
+			-webkit-box-shadow: #CCC 0px 0px 3px;
+			background: rgba(255, 255, 255, 1);
+			bottom: 0px;
+			right: 17px;
+			padding: 3px 10px;
+			position: fixed;
+		}
+		
+		#from_andyet h2 {
+			background-image: url(http://xmppconsulting.com/images/from_&yet.png);
+			background-repeat: no-repeat;
+			height: 29px;
+			line-height: 0;
+			text-indent: -9999em;
+			width: 79px;
+			margin-top: 0;
+		}
+		
 	</style>
 	
 </head>
@@ -90,36 +160,17 @@
         <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
     </div>
 
-    <h1><a href="http://github.com/andyet/ICanHaz.js">ICanHaz.js</a>
-      <span class="small">by <a href="http://github.com/andyet">andyet</a></span></h1>
-
-    <div class="description">
-      A clean solution for templating with Moustache.js and jQuery
-    </div>
-
-    <h2>Authors</h2>
-<p>Henrik Joreteg (henrik@andyet.net)<br/>Kevin Burke (keburke@k12.com)<br/>Richard Clark (rdclark@nextquestion.net)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>&yet (team@andyet.net)<br/>      </p>
-
+	 <h1 id="title"><a href="http://github.com/andyet/ICanHaz.js">ICanHaz<span class="dot">.</span><span class="js">js</span></a></h1>
+    <p id="intro">A simple &amp; powerful approach to client-side<br />templating with Moustache.js and jQuery</p>
 
     <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/andyet/ICanHaz.js/zipball/master">zip</a> or
-      <a href="http://github.com/andyet/ICanHaz.js/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+    <p>Clone the project with <a href="http://git-scm.com">Git</a>
       by running:
       <pre>$ git clone git://github.com/andyet/ICanHaz.js</pre>
     </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/andyet/ICanHaz.js">andyet/ICanHaz.js</a>
-    </div>
-    
+    <hr />
     <div id="readme">
-            <h1>ICanHaz.js</h1>
+            <h1>Okay, let's do things</h1>
 
             <p>A simple/powerful approach for doing client-side
             templating with Mustache.js and jQuery.</p>
@@ -133,16 +184,12 @@
         &lt;span class"name"&gt;Hello I'm {{ name }}&lt;/span&gt;
         &lt;span class="twitter"&gt;&lt;a href="http://twitter.com/{{ twitter }}"&gt;@{{ twitter }}&lt;/a&gt;&lt;/span&gt;
     &lt;/li&gt;
-&lt;/script&gt;
-</code>
-				</pre>
+&lt;/script&gt;</code></pre>
 
             <h3>Step 2. - Retrieve your populated template:</h3>
             <pre>
 <code>// I Can Haz User?
-var user = ich.user(user_data_object)
-</code>
-				</pre>
+var user = ich.user(user_data_object)</code></pre>
 
             <h3>Step 3. - There is no step 3!</h3>
 
@@ -180,9 +227,7 @@ my_list.appendChild(list_item);
 
 // jQuery
 hello_div = $('&lt;div class="hello"&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;');
-hello_div.children('ul').append('&lt;li&gt;My list&lt;li&gt;');
-</code>
-				</pre>
+hello_div.children('ul').append('&lt;li&gt;My list&lt;li&gt;');</code></pre>
 
             <p>It gets really problematic if what you're building
             is a lot longer or more complex than this example. Not
@@ -201,9 +246,7 @@ hello_div.children('ul').append('&lt;li&gt;My list&lt;li&gt;');
 
 var template = "{{title}} spends {{calc}}";
 
-var html = Mustache.to_html(template, view);
-</code>
-				</pre>
+var html = Mustache.to_html(template, view);</code></pre>
 
             <p>But the beauty fades when we're dealing with
             multi-line html in the browser because strings in JS
@@ -215,9 +258,7 @@ var html = Mustache.to_html(template, view);
 <code>var template = '&lt;div class="hello"&gt;\
     &lt;span class="title"&gt;{{ title }}&lt;/span&gt;\
     &lt;ul&gt;&lt;/ul&gt;\
-&lt;/div&gt;'
-</code>
-</pre>
+&lt;/div&gt;'</code></pre>
 
             <h2>I Can Haz Better Solution?</h2>
 
@@ -241,9 +282,7 @@ var html = Mustache.to_html(template, view);
 }
 
 // I can has user??
-html = ich.user(data)
-</code>
-</pre>
+html = ich.user(data)</code></pre>
 
             <p>At this point 'html' is jQuery object containing
             your complete html with your data injected.</p>
@@ -287,9 +326,7 @@ html = ich.user(data)
 &lt;!-- Partial included via {{&gt;winnings}} --&gt;
 &lt;script id="winnings" class="partial" type="text/html"&gt;
 You just won ${{value}} (which is ${{taxed_value}} after tax)
-&lt;/script&gt;
-</code>
-</pre>
+&lt;/script&gt;</code></pre>
 
             <p>Then call the main template normally.</p>
 
@@ -393,10 +430,8 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
         &lt;button id="add_user"&gt;Add User&lt;/button&gt;
         &lt;ul id="user_list"&gt;&lt;/ul&gt;
     &lt;/body&gt;
-&lt;/html&gt;
-</code>
-</pre>
-
+&lt;/html&gt;</code></pre>
+				<hr />
             <h2>Contributors</h2>
 
             <p>ICanHaz was conceived by <a href=
@@ -412,7 +447,7 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                 - IE Bug found/squashed</li>
             </ul>
 
-            <h3>Tested in:</h3>
+            <h2>Tested in:</h2>
 
             <p>I've personally run the tests in the following
             browsers. But basically, there's no reason it shouldn't
@@ -430,7 +465,7 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                 <li>Safari 5</li>
             </ul>
 
-            <h3>Changelog</h3>
+            <h2>Changelog</h2>
 
             <ul>
                 <li>0.7:
@@ -457,7 +492,7 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
     </div>
 
   </div>
-
+  <a href="http://andyet.net" id="from_andyet"><h2>from &amp;yet</h2></a>
   <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
