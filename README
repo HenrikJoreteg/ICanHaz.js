@@ -1,0 +1,16 @@
+                                                                                          
+    _/_/_/    _/_/_/                      _/    _/                          _/            
+     _/    _/          _/_/_/  _/_/_/    _/    _/    _/_/_/  _/_/_/_/            _/_/_/   
+    _/    _/        _/    _/  _/    _/  _/_/_/_/  _/    _/      _/        _/  _/_/        
+   _/    _/        _/    _/  _/    _/  _/    _/  _/    _/    _/          _/      _/_/     
+_/_/_/    _/_/_/    _/_/_/  _/    _/  _/    _/    _/_/_/  _/_/_/_/  _/  _/  _/_/_/        
+                                                                       _/                 
+                                                                    _/                  
+                                                                                  
+A simple/powerful approach for doing client-side templating with Mustache.js and jQuery.
+
+MIT Licensed
+
+ICanHaz.js includes janl's mustache.js (https://github.com/janl/mustache.js/). Much props to Chris Wanstrath for Mustache and Jan Lehnardt for porting it to JS.
+
+To get started, read the documentation: http://icanhazjs.com
