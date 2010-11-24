@@ -2,150 +2,12 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
+    <meta name="viewport" content="user-scalable=yes, width=800, initial-scale=0.4" />
 	<title>ICanHaz.js | client-side templating with Mustache.js and jQuery</title>
 	<script type="text/javascript" src="http://use.typekit.com/cup4mvz.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-	<style type="text/css">
-		body {
-			margin-top: 1.0em;
-			background-color: #ededed;
-			background-color: #fff;
-			background-image: url(http://andyet.net/images/header.png);
-			background-repeat: no-repeat;
-			font-family: "Helvetica Nueue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-			color: #555;
-			font-size: 14px;
-			line-height: 140%;
-			padding-bottom: 100px;
-	 	}
-	 	
-		#container {
-			margin: 0 auto;
-	   	width: 800px;
-	   	position: relative;
-	 	}
-	 	
-	 	.download {
-	 		position: absolute;
-	 		top: 305px;
-	 		right: 0
-	 	}
-	 	
-	 	#title {
-	 		margin-top: 200px;
-	 	}
-	 	
-	 	#intro {
-	 		font-size: 18px;
-			margin-top: 0;
-	 		margin-bottom: 60px;
-	 	}
-	 	
-		h1 { 
-			font-size: 100px; 
-			color: #bbb; 
-			margin-bottom: 3px; 
-			font-family: "league-gothic-1", "league-gothic-2", sans-serif;
-			text-transform: uppercase;
-			line-height: 100%;
-		}
-		
-		h1 a { 
-			text-decoration: none;
-		}
-		
-		h1 .dot {
-			color: #c0c0c0;
-		}
-		
-		h1 .js {
-			color: #cfcfcf;
-		}
-		
-		h2 { 
-			font-size: 40px;
-			color: #cbcbcb; 
-			font-family: "league-gothic-1", "league-gothic-2", sans-serif;
-			text-transform: uppercase;
-			margin-top: 60px;
-			margin-bottom: 0px;
-		}
-		
-		h3 { 
-			font-family: "Helvetica Nueue", "Helvetica Neue";
-	 		text-transform: uppercase;
-	 		font-weight: 300;
-	 		color: #000;
-	 		margin-bottom: 0;
-	 		margin-top: 40px;
-	 	}
-	 	
-		a { 
-			color: #999; 
-		}
-		
-		.download { 
-			float: right;
-		}
-		
-		pre { 
-			background-color: #555;
-			background-image: url(http://andyet.net/images/noise_dk.png);
-			color: #fff; 
-			padding: 15px;
-			font-size: 12px;
-			margin: 5px 0 20px 0;
-			border-top: 1px solid #333;
-			border-bottom: 1px solid #ccc;
-			line-height: 140%;
-		}
-		
-		code {
-			background: #eee;
-			color: #000;
-		}
-		
-		pre code {
-			background: transparent;
-			color: #fff;
-		}
-		
-		hr { 
-			border: 0; 
-			width: 80%; 
-			border-bottom: 1px solid #fff;
-			border-top: 1px solid #ccc;
-			margin-top: 40px;
-			margin: 60px auto 80px auto;
-		}
-		
-		.footer { 
-			text-align:center; 
-			padding-top:30px;
-		}
-		
-		#from_andyet {
-			-webkit-box-shadow: #CCC 0px 0px 3px;
-			background: rgba(255, 255, 255, 1);
-			bottom: 0px;
-			right: 17px;
-			padding: 3px 10px;
-			position: fixed;
-		}
-		
-		#from_andyet h2 {
-			background-image: url(http://xmppconsulting.com/images/from_&yet.png);
-			background-repeat: no-repeat;
-			height: 29px;
-			line-height: 0;
-			text-indent: -9999em;
-			width: 79px;
-			margin-top: 0;
-		}
-		
-	</style>
-	
+	<link media="only screen and (max-device-width: 480px)" href="iphone.css" type= "text/css" rel="stylesheet">
+	<link media="screen" href="desktop.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
@@ -181,10 +43,10 @@
             <h3>Step 1. - Define your template</h3>
             <pre>
 <code>&lt;script id="user" type="text/html"&gt;
-    &lt;li&gt;
-        &lt;span class"name"&gt;Hello I'm {{ name }}&lt;/span&gt;
-        &lt;span class="twitter"&gt;&lt;a href="http://twitter.com/{{ twitter }}"&gt;@{{ twitter }}&lt;/a&gt;&lt;/span&gt;
-    &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p class"name"&gt;Hello I'm {{ name }}&lt;/p&gt;
+    &lt;p&gt;&lt;a href="http://twitter.com/{{ twitter }}"&gt;@{{ twitter }}&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/script&gt;</code></pre>
 
             <h3>Step 2. - Retrieve your populated template:</h3>
@@ -213,11 +75,9 @@ var user = ich.user(user_data_object)</code></pre>
             <h2>Why would we need this?</h2>
 
             <p>Because building html elements using javascript or
-            jQuery is ugly:</p>
+            jQuery is ugly. There's several ways to do it, but the point is &mdash; it's ugly.</p>
             <pre>
-<code>// obviously there's several ways to do this, but point is... it's ugly.
-
-// vanilla JS
+<code>// vanilla JS
 hello_div = document.createElement('div');
 hello_div.setAttribute('class', 'hello');
 my_list = document.createElement('ul');
@@ -257,8 +117,8 @@ var html = Mustache.to_html(template, view);</code></pre>
             land:</p>
             <pre>
 <code>var template = '&lt;div class="hello"&gt;\
-    &lt;span class="title"&gt;{{ title }}&lt;/span&gt;\
-    &lt;ul&gt;&lt;/ul&gt;\
+  &lt;span class="title"&gt;{{ title }}&lt;/span&gt;\
+  &lt;ul&gt;&lt;/ul&gt;\
 &lt;/div&gt;'</code></pre>
 
             <h2>I Can Haz Better Solution?</h2>
@@ -278,8 +138,8 @@ var html = Mustache.to_html(template, view);</code></pre>
             example "I can haz user?":</p>
             <pre>
 <code>var data = {
-    first_name: "Henrik",
-    last_name: "Joreteg"
+  first_name: "Henrik",
+  last_name: "Joreteg"
 }
 
 // I can has user??
@@ -382,55 +242,57 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
             <pre>
 <code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
-    &lt;head&gt;
-        &lt;title&gt;ICanHaz.js Demo&lt;/title&gt;
-        &lt;script src="test/jquery-1.4.4.min.js" type="text/javascript"&gt;&lt;/script&gt;
-        &lt;script src="ICanHaz.min.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;head&gt;
+    &lt;title&gt;ICanHaz.js Demo&lt;/title&gt;
+    &lt;script src="test/jquery-1.4.4.min.js"&gt;&lt;/script&gt;
+    &lt;script src="ICanHaz.min.js" &gt;&lt;/script&gt;
 
-        &lt;script id="user" type="text/html"&gt;
-            &lt;li&gt;
-                &lt;p&gt;Howdy I&amp;apos;m &lt;a href="http://twitter.com/{{ twitter }}"&gt;@{{ twitter }}&lt;/a&gt;&lt;/p&gt;
-                &lt;p&gt;I work for {{ employer }} as a {{ job_title }}.&lt;/p&gt;
-            &lt;/li&gt;
-        &lt;/script&gt;
+    &lt;script id="user" type="text/html"&gt;
+      &lt;li&gt;
+        &lt;p&gt;Hi I&amp;apos;m &lt;a href="http://twitter.com/{{ twitter }}"&gt;@{{ twitter }}&lt;/a&gt;&lt;/p&gt;
+        &lt;p&gt;I work for {{ employer }} as a {{ job_title }}.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/script&gt;
 
-        &lt;script type="text/javascript"&gt;
-            // when the dom's ready
-            $(document).ready(function () {
-                // add a simple click handler for the "add user" button.
-                $('#add_user').click(function () {
-                    var user_data, user;
+    &lt;script type="text/javascript"&gt;
+      // when the dom's ready
+      $(document).ready(function () {
+        // add a simple click handler for the "add user" button.
+        $('#add_user').click(function () {
+          var user_data, user;
 
-                    // build a simple user object, in a real app this would probably come from a server
-                    // somewhere. Otherwise hardcoding here is just silly.
-                    user_data = {
-                        name: "Henrik Joreteg",
-                        twitter: "HenrikJoreteg",
-                        employer: "&amp;yet",
-                        job_title: "JS nerd"
-                    };
+          // build a simple user object, in a real app this 
+          // would probably come from a server somewhere. 
+          // Otherwise hardcoding here is just silly.
+          user_data = {
+            name: "Henrik Joreteg",
+            twitter: "HenrikJoreteg",
+            employer: "&amp;yet",
+            job_title: "JS nerd"
+          };
 
-                    // Here's all the magic.
-                    user = ich.user(user_data);
+          // Here's all the magic.
+          user = ich.user(user_data);
 
-                    // append it to the list, tada! Now go do something more useful with this.
-                    $('#user_list').append(user);
-                });
-            });
-        &lt;/script&gt;
+          // append it to the list, tada! 
+          //Now go do something more useful with this.
+          $('#user_list').append(user);
+        });
+      });
+    &lt;/script&gt;
 
-        &lt;style&gt;
-            body {
-                font-family: Helvetica;
-            }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;h1&gt;ICanHaz.js Demo&lt;/h1&gt;
-        &lt;h3&gt;User List&lt;/h3&gt;
-        &lt;button id="add_user"&gt;Add User&lt;/button&gt;
-        &lt;ul id="user_list"&gt;&lt;/ul&gt;
-    &lt;/body&gt;
+    &lt;style&gt;
+      body {
+        font-family: Helvetica;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;ICanHaz.js Demo&lt;/h1&gt;
+    &lt;h3&gt;User List&lt;/h3&gt;
+    &lt;button id="add_user"&gt;Add User&lt;/button&gt;
+    &lt;ul id="user_list"&gt;&lt;/ul&gt;
+  &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 				<hr />
             <h2>Contributors</h2>

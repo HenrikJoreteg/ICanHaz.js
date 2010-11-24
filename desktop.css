@@ -1,0 +1,136 @@
+body {
+	margin-top: 1.0em;
+	background-color: #ededed;
+	background-color: #fff;
+	background-image: url(images/header.png);
+	background-repeat: no-repeat;
+	font-family: "Helvetica Nueue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #555;
+	font-size: 14px;
+	line-height: 140%;
+	padding-bottom: 100px;
+	}
+	
+#container {
+	margin: 0 auto;
+	width: 800px;
+	position: relative;
+	}
+	
+.download {
+	position: absolute;
+	top: 305px;
+	right: 0
+}
+
+#title {
+	margin-top: 200px;
+}
+
+#intro {
+	font-size: 18px;
+    margin-top: 0;
+	margin-bottom: 60px;
+}
+
+h1 { 
+	font-size: 100px; 
+	color: #bbb; 
+	margin-bottom: 3px; 
+	font-family: "league-gothic-1", "league-gothic-2", sans-serif;
+	text-transform: uppercase;
+	line-height: 100%;
+}
+
+h1 a { 
+	text-decoration: none;
+}
+
+h1 .dot {
+	color: #c0c0c0;
+}
+
+h1 .js {
+	color: #cfcfcf;
+}
+
+h2 { 
+	font-size: 40px;
+	color: #cbcbcb; 
+	font-family: "league-gothic-1", "league-gothic-2", sans-serif;
+	text-transform: uppercase;
+	margin-top: 60px;
+	margin-bottom: 0px;
+}
+
+h3 { 
+	font-family: "Helvetica Nueue", "Helvetica Neue";
+		text-transform: uppercase;
+		font-weight: 300;
+		color: #000;
+		margin-bottom: 0;
+		margin-top: 40px;
+	}
+	
+a { 
+	color: #999; 
+}
+
+.download { 
+	float: right;
+}
+
+pre { 
+	background-color: #555;
+	background-image: url(images/noise_dk.png);
+	color: #fff; 
+	padding: 15px;
+	font-size: 12px;
+	margin: 5px 0 20px 0;
+	border-top: 1px solid #333;
+	border-bottom: 1px solid #ccc;
+	line-height: 140%;
+}
+
+code {
+	background: #eee;
+	color: #000;
+}
+
+pre code {
+	background: transparent;
+	color: #fff;
+}
+
+hr { 
+	border: 0; 
+	width: 80%; 
+	border-bottom: 1px solid #fff;
+	border-top: 1px solid #ccc;
+	margin-top: 40px;
+	margin: 60px auto 80px auto;
+}
+
+.footer { 
+	text-align:center; 
+	padding-top:30px;
+}
+
+#from_andyet {
+	-webkit-box-shadow: #CCC 0px 0px 3px;
+	background: rgba(255, 255, 255, 1);
+	bottom: 0px;
+	right: 17px;
+	padding: 3px 10px;
+	position: fixed;
+}
+
+#from_andyet h2 {
+	background-image: url(images/from_&yet.png);
+	background-repeat: no-repeat;
+	height: 29px;
+	line-height: 0;
+	text-indent: -9999em;
+	width: 79px;
+	margin-top: 0;
+}

@@ -1,0 +1,23 @@
+#container {
+	margin: 0 auto;
+	width: 800px;
+	position: relative;
+}
+
+#from_andyet {
+	background: rgba(255, 255, 255, 1);
+	top: 0px;
+	left: 17px;
+	padding: 3px 10px;
+	position: absolute;
+	height: 29px;
+	width: 79px;
+}
+
+.download {
+    display: none;
+}
+
+pre code {
+	letter-spacing:-2px;
+}
