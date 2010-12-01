@@ -6,11 +6,13 @@
 	<title>ICanHaz.js | client-side templating with Mustache.js and jQuery</title>
 	<script type="text/javascript" src="http://use.typekit.com/cup4mvz.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type="text/javascript" src="prettify.js"></script>
 	<link media="only screen and (max-device-width: 480px)" href="iphone.css" type= "text/css" rel="stylesheet">
 	<link media="screen" href="desktop.css" type="text/css" rel="stylesheet">
+	<link href="prettify.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
+<body onload="prettyPrint()">
   <a href="http://github.com/andyet/ICanHaz.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
   <div id="container">
@@ -33,7 +35,7 @@
     </ul>
     <p>Or... you can clone <a href="http://github.com/andyet/ICanHaz.js">the whole project from GitHub</a> with 
       <a href="http://git-scm.com">Git</a> by running:</p>
-      <pre>$ git clone git://github.com/andyet/ICanHaz.js</pre>
+      <pre class="prettyprint">$ git clone git://github.com/andyet/ICanHaz.js</pre>
     <hr />
     <div id="readme">
             <h1>Okay, let's do things</h1>
@@ -41,16 +43,16 @@
             <h2>The Quick Demo:</h2>
 
             <h3>Step 1. - Define your template</h3>
-            <pre>
+            <pre class="prettyprint lang-html">
 <code>&lt;script id="user" type="text/html"&gt;
   &lt;li&gt;
-    &lt;p class"name"&gt;Hello I'm {{ name }}&lt;/p&gt;
+    &lt;p class="name"&gt;Hello I'm {{ name }}&lt;/p&gt;
     &lt;p&gt;&lt;a href="http://twitter.com/{{ twitter }}"&gt;@{{ twitter }}&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/script&gt;</code></pre>
 
             <h3>Step 2. - Retrieve your populated template:</h3>
-            <pre>
+            <pre class="prettyprint">
 <code>// I Can Haz User?
 var user = ich.user(user_data_object)</code></pre>
 
@@ -76,7 +78,7 @@ var user = ich.user(user_data_object)</code></pre>
 
             <p>Because building html elements using javascript or
             jQuery is ugly. There's several ways to do it, but the point is &mdash; it's ugly.</p>
-            <pre>
+            <pre class="prettyprint">
 <code>// vanilla JS
 hello_div = document.createElement('div');
 hello_div.setAttribute('class', 'hello');
@@ -97,7 +99,7 @@ hello_div.children('ul').append('&lt;li&gt;My list&lt;li&gt;');</code></pre>
 
             <p>Mustache.js gives us an awesome templating solution,
             here's a snippet from their docs:</p>
-            <pre>
+            <pre class="prettyprint">
 <code>var view = {
   title: "Joe",
   calc: function() {
@@ -115,7 +117,7 @@ var html = Mustache.to_html(template, view);</code></pre>
             escaped. Then there's the problem of double vs. single
             quotes and before you know it... we're back in ugly
             land:</p>
-            <pre>
+            <pre class="prettyprint">
 <code>var template = '&lt;div class="hello"&gt;\
   &lt;span class="title"&gt;{{ title }}&lt;/span&gt;\
   &lt;ul&gt;&lt;/ul&gt;\
@@ -136,7 +138,7 @@ var html = Mustache.to_html(template, view);</code></pre>
             a cache of all the templates and creates a function for
             each snippet. All you have to do is say to yourself for
             example "I can haz user?":</p>
-            <pre>
+            <pre class="prettyprint">
 <code>var data = {
   first_name: "Henrik",
   last_name: "Joreteg"
@@ -178,7 +180,7 @@ html = ich.user(data)</code></pre>
             <p>Just add <code>class="partial"</code> when defining
             the template for a partial (It won't be added to your
             main template cache):</p>
-            <pre>
+            <pre class="prettyprint">
 <code>&lt;!-- Main template, includes the "winnings" partial. --&gt;
 &lt;script id="welcome" type="text/html"&gt;
 &lt;p&gt;Welcome, {{name}}! {{&gt;winnings}}&lt;/p&gt;
@@ -239,7 +241,7 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
             </ul>
 
             <h2>Full Working Example</h2>
-            <pre>
+            <pre class="prettyprint">
 <code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
