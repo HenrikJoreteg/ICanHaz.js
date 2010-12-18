@@ -48,11 +48,11 @@ function ICanHaz() {
         // Whitespace at beginning and end of all templates inside <script> tags will 
         // be trimmed. If you want whitespace around a partial, add it in the parent, 
         // not the partial. Or do it explicitly using <br/> or &nbsp;
-        $('script[type="text/html"]').each(function () {
-            var script = $(this),
-                name = script.attr('id'),
-                text = $.trim(script.html()),
-                isPartial = script.attr('class').toLowerCase() === 'partial';
+        $('script[type="text/html"]').each(function (script) {
+            script = (typeof script == 'number') ? $(this) : $(script); // Zepto doesn't bind this
+            var name = script.attr('id'),
+                text = script.html().trim(),
+                isPartial = (script.attr('class') && script.attr('class').toLowerCase() === 'partial');
             
             if (isPartial) {
                 that.addPartial(name, text);
@@ -75,9 +75,9 @@ function ICanHaz() {
     
     this.clearAll = function () {
         // delete the methods on ourself
-        $.each(spec.cache, function (key, value) {
+        for (var key in spec.cache) {
             delete that[key];
-        });
+        }
         
         // clear the cache and partials
         spec.cache = {};

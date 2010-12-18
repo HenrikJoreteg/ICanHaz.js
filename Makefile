@@ -22,7 +22,7 @@ $(ICH): $(BASE_FILES)
 	@@cat source/intro.js | sed -e 's/@VERSION@/$(VERSION)/' > $(ICH)
 	@@echo "(function ($$) {" >> $(ICH)
 	@@cat $(BASE_FILES) | sed -e 's/@VERSION@/$(VERSION)/' >> $(ICH)
-	@@echo "}(jQuery));" >> $(ICH)
+	@@echo "})(this.jQuery || this.Zepto);" >> $(ICH)
 	@@echo $(ICH) "built."
 	@@echo
 
