@@ -3,7 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="user-scalable=yes, width=800, initial-scale=0.4" />
-	<title>ICanHaz.js | client-side templating with Mustache.js and jQuery</title>
+	<title>ICanHaz.js | client-side templating with Mustache.js and jQuery or Zepto.js</title>
 	<script type="text/javascript" src="http://use.typekit.com/cup4mvz.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<link media="only screen and (max-device-width: 480px)" href="iphone.css" type= "text/css" rel="stylesheet">
@@ -63,7 +63,7 @@ var user = ich.user(user_data_object)</code></pre>
             <a href=
             "https://github.com/janl/mustache.js/tree/0.3.0">janl's
             Mustache.js v0.3.0</a> (inside a closure) that way you
-            can just include ICanHaz along with jQuery and then YOU
+            can just include ICanHaz along with jQuery or Zepto and then YOU
             CAN HAZ stuffs. Luckily Mustache and Mustache.js are
             generously MIT licensed. Mr. Github founder himself
             Chris Wanstrath (<a href=
@@ -146,7 +146,7 @@ var html = Mustache.to_html(template, view);</code></pre>
 // I can has user??
 html = ich.user(data)</code></pre>
 
-            <p>At this point 'html' is jQuery object containing
+            <p>At this point 'html' is jQuery or Zepto object containing
             your complete html with your data injected.</p>
 
             <p>For each template you define (except partials),
@@ -309,6 +309,9 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
 
                 <li><a href="http://github.com/kembuco">kembuco</a>
                 - IE Bug found/squashed</li>
+                
+                <li><a href="http://github.com/titanous">titanous</a>
+                - Zepto.js support</li>
             </ul>
 
             <h2>Tested in:</h2>
@@ -316,7 +319,8 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
             <p>I've personally run the tests in the following
             browsers. But basically, there's no reason it shouldn't
             work in any browser that jQuery and Mustache
-            support.</p>
+            support. It should also work with Zepto in any browser 
+            Zepto which is a smaller list of course.</p>
 
             <ul>
                 <li>IE 6, 8 (and 8 in compat. mode, which is
@@ -327,11 +331,15 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                 <li>Chrome 7</li>
 
                 <li>Safari 5</li>
+                
+                <li>Mobile Safari (iPhone simulator)</li>
             </ul>
 
             <h2>Changelog</h2>
 
             <ul>
+                <li>0.8: Now works with either jQuery or Zepto.js</li>
+                
                 <li>0.7:
 
                     <ul>
