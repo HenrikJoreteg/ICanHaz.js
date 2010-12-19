@@ -7,7 +7,8 @@ function ICanHaz() {
         spec = {
             cache: {},
             partials: {}
-        };
+        },
+        trim = String.prototype.trim;
     
     this.VERSION = "@VERSION@";
     
@@ -51,7 +52,7 @@ function ICanHaz() {
         $('script[type="text/html"]').each(function (script) {
             script = (typeof script == 'number') ? $(this) : $(script); // Zepto doesn't bind this
             var name = script.attr('id'),
-                text = script.html().trim(),
+                text = (trim) ? trim.call(script.html()) : $.trim(script.html()),
                 isPartial = (script.attr('class') && script.attr('class').toLowerCase() === 'partial');
             
             if (isPartial) {

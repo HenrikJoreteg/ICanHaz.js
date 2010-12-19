@@ -1,5 +1,5 @@
 /*!
-ICanHaz.js version 0.7 -- by @HenrikJoreteg
+ICanHaz.js version 0.8 -- by @HenrikJoreteg
 More info at: http://icanhazjs.com
 */
 (function ($) {
@@ -337,9 +337,10 @@ function ICanHaz() {
         spec = {
             cache: {},
             partials: {}
-        };
+        },
+        trim = String.prototype.trim;
     
-    this.VERSION = "0.7";
+    this.VERSION = "0.8";
     
     // public function for adding templates
     this.addTemplate = function (name, templateString) {
@@ -381,7 +382,7 @@ function ICanHaz() {
         $('script[type="text/html"]').each(function (script) {
             script = (typeof script == 'number') ? $(this) : $(script); // Zepto doesn't bind this
             var name = script.attr('id'),
-                text = script.html().trim(),
+                text = (trim) ? trim.call(script.html()) : $.trim(script.html()),
                 isPartial = (script.attr('class') && script.attr('class').toLowerCase() === 'partial');
             
             if (isPartial) {
