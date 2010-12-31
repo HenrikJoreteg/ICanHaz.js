@@ -16,14 +16,7 @@
 
   <div id="container">
 
-    <div class="download">
-      <a href="http://github.com/andyet/ICanHaz.js/zipball/master">
-        <img border="0" width="90" src="images/zip.png"></a>
-      <a href="http://github.com/andyet/ICanHaz.js/tarball/master">
-        <img border="0" width="90" src="images/tar.png"></a>
-    </div>
-
-	 <h1 id="title"><a href="http://github.com/andyet/ICanHaz.js">ICanHaz<span class="dot">.</span><span class="js">js</span></a></h1>
+    <h1 id="title"><a href="http://github.com/andyet/ICanHaz.js">ICanHaz<span class="dot">.</span><span class="js">js</span></a></h1>
     <p id="intro">Simple &amp; powerful client-side templating for jQuery or Zepto.js</p>
 
     <h2>Download</h2>
@@ -32,6 +25,11 @@
       <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz.js">ICanHaz.js</a> - Uncompressed</li>
       <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz.min.js">ICanHaz.min.js</a> - Minified</li>
     </ul>
+    <div class="download">
+      <a href="http://github.com/andyet/ICanHaz.js/zipball/master"><img width="90" src="images/zip.png"></a>
+      <a href="http://github.com/andyet/ICanHaz.js/tarball/master"><img width="90" src="images/tar.png"></a>
+    </div>
+    	
     <p>Or... you can clone <a href="http://github.com/andyet/ICanHaz.js">the whole project from GitHub</a> with 
       <a href="http://git-scm.com">Git</a> by running:</p>
       <pre class="prettyprint">$ git clone git://github.com/andyet/ICanHaz.js</pre>
@@ -239,7 +237,8 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                 templates.</li>
             </ul>
 
-            <h2>Full Working Example</h2>
+            <h2>Examples</h2>
+            <h3>Full Working Example</h3>
             <pre class="prettyprint">
 <code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -295,15 +294,27 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
     &lt;ul id="user_list"&gt;&lt;/ul&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-				<hr />
-            <h2>Contributors</h2>
+				
+			<h3>Pulling templates from a remote server</h3>	
+			<pre class="prettyprint lang-js">
+<code>$.getJSON('/myserver/templates.json', function (templates) {
+    $.each(templates, function (template) {
+        ich.addTemplate(template.name, template.template);
+    });
+});</code></pre>
+			
+			<hr />
+			
+            <h2>Credits</h2>
 
-            <p>ICanHaz was conceived by <a href=
-            "http://twitter.com/HenrikJoreteg">@HenrikJoreteg</a>.</p>
+            <p>ICanHaz.js was created by <a href="http://twitter.com/HenrikJoreteg">@HenrikJoreteg</a>.</p>
 
             <h3>Other Contributors:</h3>
 
             <ul>
+                <li><a href="http://twitter.com/adambrault">Adam Brault</a>
+                - Documentation HTML/CSS</li>
+                
                 <li><a href="http://github.com/rdclark">rdclark</a>
                 - Test coverage and partials support</li>
 

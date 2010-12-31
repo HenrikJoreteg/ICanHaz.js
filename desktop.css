@@ -10,17 +10,25 @@ body {
 	line-height: 140%;
 	padding-bottom: 100px;
 	}
-	
+
+img {
+    border: 0;
+}	
+
 #container {
 	margin: 0 auto;
 	width: 800px;
 	position: relative;
-	}
+}
 	
 .download {
-	position: absolute;
-	top: 305px;
-	right: 0
+	position: relative;
+}
+
+.download a {
+    position: relative;
+    top: 12px;
+    right: 0;
 }
 
 #title {
