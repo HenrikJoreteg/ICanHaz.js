@@ -65,19 +65,19 @@ test("renders partials added at runtime", function() {
 });
 
 test("showAll shouldn't let you edit actual templates", function () {
-    var welcome = ich.showAll().templates.welcome;
+    var welcome = ich.templates.welcome;
     
-    ich.showAll().templates.welcome = "something new";
+    ich.templates.welcome = "something new";
     notEqual(ich.welcome(), "something new", "the template should not have changed");
 });
 
 test("clearAll should wipe 'em out", function () {
     ich.clearAll();
     
-    ok(isEmptyObject(ich.showAll().templates));
-    ok(isEmptyObject(ich.showAll().partials));
+    ok(isEmptyObject(ich.templates));
+    ok(isEmptyObject(ich.partials));
     
-    equal(ich.hasOwnProperty('welcome2'), false, "welcome2 template gone?");
+    equal(ich['welcome2'], undefined, "welcome2 template gone?");
 });
 
 test("grabTemplates that are loaded in later", function () {

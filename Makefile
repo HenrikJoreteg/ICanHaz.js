@@ -2,7 +2,7 @@ SHELL = /bin/bash
 
 VERSION = $(shell cat version.txt;)
 
-YUI_COMPRESSOR = /usr/local/bin/yuicompressor-2.4.2.jar
+COMPILER = /usr/local/bin/closure-compiler.jar
 
 ICH = ICanHaz.js
 ICH_MIN = ICanHaz.min.js
@@ -22,7 +22,7 @@ $(ICH): $(BASE_FILES)
 	@@cat source/intro.js | sed -e 's/@VERSION@/$(VERSION)/' > $(ICH)
 	@@echo "(function ($$) {" >> $(ICH)
 	@@cat $(BASE_FILES) | sed -e 's/@VERSION@/$(VERSION)/' >> $(ICH)
-	@@echo "})(this.jQuery || this.Zepto);" >> $(ICH)
+	@@echo "})(window.jQuery || window.Zepto);" >> $(ICH)
 	@@echo $(ICH) "built."
 	@@echo
 
@@ -30,12 +30,12 @@ $(ICH): $(BASE_FILES)
 $(ICH_MIN): $(ICH)
 	@@echo
 	@@echo "Building" $(ICH_MIN) "..."
-ifdef YUI_COMPRESSOR
-	@@java -jar $(YUI_COMPRESSOR) --type js $(ICH) > $(ICH_MIN)
+ifdef COMPILER
+	@@java -jar $(COMPILER) --compilation_level SIMPLE_OPTIMIZATIONS --js=$(ICH) > $(ICH_MIN)
 	@@echo $(ICH_MIN) "built."
 else
 	@@echo $(ICH_MIN) "not built."
-	@@echo "    YUI Compressor required to build minified version."
-	@@echo "    Please set YUI_COMPRESSOR variable in 'make' file to the jar file."
+	@@echo "    Google Closure complier required to build minified version."
+	@@echo "    Please point COMPILER variable in 'makefile' to the jar file."
 endif
 	@@echo

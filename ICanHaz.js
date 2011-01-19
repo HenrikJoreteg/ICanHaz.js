@@ -1,5 +1,5 @@
 /*!
-ICanHaz.js version 0.8 -- by @HenrikJoreteg
+ICanHaz.js version 0.9 -- by @HenrikJoreteg
 More info at: http://icanhazjs.com
 */
 (function ($) {
@@ -333,91 +333,62 @@ var Mustache = function() {
 */
 /*global jQuery  */
 function ICanHaz() {
-    var that = this,
-        spec = {
-            cache: {},
-            partials: {}
-        },
-        trim = String.prototype.trim;
-    
-    this.VERSION = "0.8";
+    var self = this;
+    self.VERSION = "0.9";
+    self.templates = {};
+    self.partials = {};
     
     // public function for adding templates
-    this.addTemplate = function (name, templateString) {
-        // We're enforcing uniqueness to avoid accidental template overwrites.
-        // If you want a different template, it should have a different name.
-        if (this[name]) {
-            throw "Can't add a template with reserved name: " + name + ".";
-        } else if (spec.cache.hasOwnProperty(name)) {
-            throw "You've already got a template by the name: \"" + name + "\"";
-        } else {
-            // cache it
-            spec.cache[name] = templateString;
-            
-            // build the corresponding public retrieval function
-            that[name] = function (data, raw) {
-                data = data || {};
-                var result = Mustache.to_html(spec.cache[name], data, spec.partials);
-                return raw ? result : $(result);
-            };
-        }       
+    // We're enforcing uniqueness to avoid accidental template overwrites.
+    // If you want a different template, it should have a different name.
+    self.addTemplate = function (name, templateString) {
+        if (self[name]) throw "Invalid name: " + name + ".";
+        if (self.templates[name]) throw "Template \" + name + \" exists";
+        
+        self.templates[name] = templateString;
+        self[name] = function (data, raw) {
+            data = data || {};
+            var result = Mustache.to_html(self.templates[name], data, self.partials);
+            return raw ? result : $(result);
+        };       
     };
     
     // public function for adding partials
-    this.addPartial = function (name, templateString) {
-        if (spec.partials.hasOwnProperty(name)) {
-            // check for partial
-            throw "You've already got a partial with the name: \" + name + \"";
+    self.addPartial = function (name, templateString) {
+        if (self.partials[name]) {
+            throw "Partial \" + name + \" exists";
         } else {
-            spec.partials[name] = templateString;
+            self.partials[name] = templateString;
         }
     };
     
     // grabs templates from the DOM and caches them.
-    this.grabTemplates = function () {        
-        // Loop through and add templates.
-        // Whitespace at beginning and end of all templates inside <script> tags will 
-        // be trimmed. If you want whitespace around a partial, add it in the parent, 
-        // not the partial. Or do it explicitly using <br/> or &nbsp;
-        $('script[type="text/html"]').each(function (script) {
-            script = (typeof script == 'number') ? $(this) : $(script); // Zepto doesn't bind this
-            var name = script.attr('id'),
-                text = (trim) ? trim.call(script.html()) : $.trim(script.html()),
-                isPartial = (script.attr('class') && script.attr('class').toLowerCase() === 'partial');
+    // Loop through and add templates.
+    // Whitespace at beginning and end of all templates inside <script> tags will 
+    // be trimmed. If you want whitespace around a partial, add it in the parent, 
+    // not the partial. Or do it explicitly using <br/> or &nbsp;
+    self.grabTemplates = function () {        
+        $('script[type="text/html"]').each(function (a, b) {
+            var script = $((typeof a === 'number') ? b : a), // Zepto doesn't bind this
+                text = (''.trim) ? script.html().trim() : $.trim(script.html());
             
-            if (isPartial) {
-                that.addPartial(name, text);
-            } else {
-                that.addTemplate(name, text);
-            }
-            
-            // remove the element from the DOM
+            self[script.hasClass('partial') ? 'addPartial' : 'addTemplate'](script.attr('id'), text);
             script.remove();
         });
     };
     
-    // returns copy of template cache
-    this.showAll = function () {
-        return {
-            templates: $.extend({}, spec.cache),
-            partials: $.extend({}, spec.partials)
-        };
-    };
-    
-    this.clearAll = function () {
-        // delete the methods on ourself
-        for (var key in spec.cache) {
-            delete that[key];
+    // clears all retrieval functions and empties caches
+    self.clearAll = function () {
+        for (var key in self.templates) {
+            delete self[key];
         }
-        
-        // clear the cache and partials
-        spec.cache = {};
-        spec.partials = {};
+        self.templates = {};
+        self.partials = {};
     };
     
-    this.refresh = function () {
-        this.clearAll();
-        this.grabTemplates();
+    self.refresh = function () {
+        self.clearAll();
+        self.grabTemplates();
     };
 }
 
@@ -427,4 +398,4 @@ window.ich = new ICanHaz();
 $(function () {
     ich.grabTemplates();
 });
-})(this.jQuery || this.Zepto);
+})(window.jQuery || window.Zepto);
