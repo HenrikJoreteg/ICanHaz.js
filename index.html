@@ -217,12 +217,8 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                 mustacheTemplateString)</code>: Add new partial,
                 see above.</li>
 
-                <li><code>ich.showAll()</code>: Returns a copy of
-                the templates/partials in the internal cache. (good
-                for seeing what you've actually got loaded).</li>
-
                 <li><code>ich.clearAll()</code>: Clears templates
-                and partials from internal cache.</li>
+                and partials cache.</li>
 
                 <li><code>ich.grabTemplates()</code>: Looks for any
                 <code>&lt;script type="text/html"&gt;</code> tags
@@ -349,6 +345,14 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
             <h2>Changelog</h2>
 
             <ul>
+                <li>0.9: 
+                    <ul>
+                        <li>Made templates and partials caches public for easy inspection in console.</li>
+                        <li>Trimmed down overall size and removing <code>showAll</code> method.</li>
+                        <li>Now compiled with Google's Closure compiler</li>
+                    </ul>
+                </li>
+                
                 <li>0.8: Now works with either jQuery or Zepto.js</li>
                 
                 <li>0.7:
