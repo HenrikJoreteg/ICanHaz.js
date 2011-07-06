@@ -342,14 +342,12 @@ var Mustache = function() {
         templates: {},
         
         // grab jquery or zepto if it's there
-        $: (window) ? window.jQuery || window.Zepto || null : null,
+        $: (typeof window !== 'undefined') ? window.jQuery || window.Zepto || null : null,
         
         // public function for adding templates
         // We're enforcing uniqueness to avoid accidental template overwrites.
         // If you want a different template, it should have a different name.
         addTemplate: function (name, templateString) {
-            console.log(name, templateString);
-            
             if (ich[name]) throw "Invalid name: " + name + ".";
             if (ich.templates[name]) throw "Template \" + name + \" exists";
             
@@ -388,7 +386,6 @@ var Mustache = function() {
                 trash = [];
             for (i = 0; i < l; i++) {
                 script = scripts[i];
-                console.log('looped', script.id);
                 if (script && script.innerText && script.id && (script.type === "text/html" || script.type === "text/x-icanhaz")) {
                     ich.addTemplate(script.id, trim(script.innerText));
                     trash.unshift(script);
@@ -408,7 +405,7 @@ var Mustache = function() {
         window.ich = ich;
     }
     
-    if (document) {
+    if (typeof document !== 'undefined') {
         if (ich.$) {
             ich.$(function () {
                 ich.grabTemplates();
@@ -421,4 +418,4 @@ var Mustache = function() {
     }
         
 })()
-})(window.jQuery || window.Zepto);
+})();
