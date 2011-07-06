@@ -4,17 +4,12 @@
 /*global  */
 (function () {
     function trim(stuff) {
-        if (''.trim) {
-            return stuff.trim();
-        } else {
-            return s.replace(/^\s+/, '').replace(/\s+$/, '');
-        }
+        if (''.trim) return stuff.trim();
+        else return s.replace(/^\s+/, '').replace(/\s+$/, '');
     }
     var ich = {
         VERSION: "@VERSION@",
-        // template & partials storage
         templates: {},
-        partials: {},
         
         // grab jquery or zepto if it's there
         $: (window) ? window.jQuery || window.Zepto || null : null,
@@ -31,18 +26,9 @@
             ich.templates[name] = templateString;
             ich[name] = function (data, raw) {
                 data = data || {};
-                var result = Mustache.to_html(ich.templates[name], data, ich.partials);
-                return (ich.$ && !raw) ? $(result) : result;
+                var result = Mustache.to_html(ich.templates[name], data, ich.templates);
+                return (ich.$ && !raw) ? ich.$(result) : result;
             };
-        },
-        
-        // public function for adding partials
-        addPartial: function (name, templateString) {
-            if (ich.partials[name]) {
-                throw "Partial \" + name + \" exists";
-            } else {
-                ich.partials[name] = templateString;
-            }
         },
         
         // clears all retrieval functions and empties caches
@@ -51,7 +37,6 @@
                 delete ich[key];
             }
             ich.templates = {};
-            ich.partials = {};
         },
         
         // clears/grabs
@@ -75,7 +60,7 @@
                 script = scripts[i];
                 console.log('looped', script.id);
                 if (script && script.innerText && script.id && (script.type === "text/html" || script.type === "text/x-icanhaz")) {
-                    ich[script.className.toLowerCase() === 'partial' ? 'addPartial' : 'addTemplate'](script.id, trim(script.innerText));
+                    ich.addTemplate(script.id, trim(script.innerText));
                     trash.unshift(script);
                 }
             }
