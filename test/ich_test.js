@@ -13,11 +13,10 @@ test("creates function for template", function() {
 });
 
 test("renders non-parameterized templates", function() {
-	expect(3);
+	expect(2);
 	equal(ich.test1({}, true), "<p>This is a test of the emergency broadcast system.</p>"); // raw text
-	var nodes = ich.test1({});
-	equal(typeof nodes, "object"); 
-	equal(nodes.text(), "This is a test of the emergency broadcast system."); 
+	var nodes = ich.test1();
+	equal(typeof nodes, "string"); 
 });
 
 test("renders parameterized templates", function() {
@@ -64,13 +63,6 @@ test("renders partials added at runtime", function() {
 	equal(ich.welcome2(view, true), 'Welcome, Joe! You just won $1000 (which is $600 after tax)');
 });
 
-test("showAll shouldn't let you edit actual templates", function () {
-    var welcome = ich.templates.welcome;
-    
-    ich.templates.welcome = "something new";
-    notEqual(ich.welcome(), "something new", "the template should not have changed");
-});
-
 test("clearAll should wipe 'em out", function () {
     ich.clearAll();
     
@@ -82,7 +74,11 @@ test("clearAll should wipe 'em out", function () {
 
 test("grabTemplates that are loaded in later", function () {
     // not recommended use, but should work nonetheless
-    $('head').append('<script id="flint" type="text/html">yabba {{ something }} doo!</script>');
+    var el = document.createElement('script');
+    el.id = "flint";
+    el.type = "text/html";
+    el.innerHTML = "yabba {{ something }} doo!";
+    document.head.appendChild(el);
     
     ich.grabTemplates();
     equal(ich.flint({something: 'dabba'}, true), "yabba dabba doo!", "should have new template");
@@ -90,7 +86,11 @@ test("grabTemplates that are loaded in later", function () {
 
 test("refresh should empty then grab new", function () {
     // not recommended use, but should work nonetheless
-    $('head').append('<script id="mother" type="text/html">your mother was a {{ something }}...</script>');
+    var el = document.createElement('script');
+    el.id = "mother";
+    el.type = "text/html";
+    el.innerHTML = "your mother was a {{ something }}...";
+    document.head.appendChild(el);
     
     ich.refresh();
     
