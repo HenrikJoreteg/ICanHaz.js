@@ -7,13 +7,13 @@ COMPILER = /usr/local/bin/closure-compiler.jar
 ICH = ICanHaz.js
 ICH_MIN = ICanHaz.min.js
 
-BASE_FILES = source/mustache.js \
-	source/main.js
+MAIN_FILE = source/main.js
+MUSTACHE_FILE ?= vendor/mustache/mustache.js
+BASE_FILES = $(MUSTACHE_FILE) $(MAIN_FILE)
 
 all: normal min
 
 normal: $(ICH)
-
 min: $(ICH_MIN)
 
 $(ICH): $(BASE_FILES)
