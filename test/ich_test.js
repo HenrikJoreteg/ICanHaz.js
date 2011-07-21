@@ -16,12 +16,12 @@ test("renders non-parameterized templates", function() {
 	expect(2);
 	equal(ich.test1({}, true), "<p>This is a test of the emergency broadcast system.</p>"); // raw text
 	var nodes = ich.test1();
-	equal(typeof nodes, "string"); 
+	equal(typeof nodes, "string");
 });
 
 test("renders parameterized templates", function() {
 	expect(1);
-	equal(ich.test2({prey:'wabbits'}, true), "<span>Be vewwy vewwy quiet, we're hunting wabbits.</span>"); 
+	equal(ich.test2({prey:'wabbits'}, true), "<span>Be vewwy vewwy quiet, we're hunting wabbits.</span>");
 });
 
 test("renders ad hoc templates", function() {
@@ -65,10 +65,10 @@ test("renders partials added at runtime", function() {
 
 test("clearAll should wipe 'em out", function () {
     ich.clearAll();
-    
+
     ok(isEmptyObject(ich.templates));
     ok(isEmptyObject(ich.partials));
-    
+
     equal(ich['welcome2'], undefined, "welcome2 template gone?");
 });
 
@@ -78,8 +78,10 @@ test("grabTemplates that are loaded in later", function () {
     el.id = "flint";
     el.type = "text/html";
     el.innerHTML = "yabba {{ something }} doo!";
-    document.head.appendChild(el);
-    
+    var heads = document.getElementsByTagName('head');
+    heads[0].appendChild(el);
+
+
     ich.grabTemplates();
     equal(ich.flint({something: 'dabba'}, true), "yabba dabba doo!", "should have new template");
 });
@@ -90,10 +92,11 @@ test("refresh should empty then grab new", function () {
     el.id = "mother";
     el.type = "text/html";
     el.innerHTML = "your mother was a {{ something }}...";
-    document.head.appendChild(el);
-    
+    var heads = document.getElementsByTagName('head');
+    heads[0].appendChild(el);
+
     ich.refresh();
-    
+
     equal(ich.mother({something: 'hampster'}, true), "your mother was a hampster...", "should have new template");
     equal(ich.hasOwnProperty('flint'), false, "flint template should be gone");
 });
