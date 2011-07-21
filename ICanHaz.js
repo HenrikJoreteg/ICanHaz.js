@@ -340,17 +340,17 @@ var Mustache = function() {
     var ich = {
         VERSION: "0.9",
         templates: {},
-        
+
         // grab jquery or zepto if it's there
         $: (typeof window !== 'undefined') ? window.jQuery || window.Zepto || null : null,
-        
+
         // public function for adding templates
         // We're enforcing uniqueness to avoid accidental template overwrites.
         // If you want a different template, it should have a different name.
         addTemplate: function (name, templateString) {
-            if (ich[name]) throw "Invalid name: " + name + ".";
-            if (ich.templates[name]) throw "Template \" + name + \" exists";
-            
+                if (ich[name]) throw "Invalid name: " + name + ".";
+                if (ich.templates[name]) throw "Template \" + name + \" exists";
+
             ich.templates[name] = templateString;
             ich[name] = function (data, raw) {
                 data = data || {};
@@ -358,7 +358,7 @@ var Mustache = function() {
                 return (ich.$ && !raw) ? ich.$(result) : result;
             };
         },
-        
+
         // clears all retrieval functions and empties caches
         clearAll: function () {
             for (var key in ich.templates) {
@@ -366,37 +366,37 @@ var Mustache = function() {
             }
             ich.templates = {};
         },
-        
+
         // clears/grabs
         refresh: function () {
             ich.clearAll();
             ich.grabTemplates();
         },
-        
+
         // grabs templates from the DOM and caches them.
         // Loop through and add templates.
-        // Whitespace at beginning and end of all templates inside <script> tags will 
-        // be trimmed. If you want whitespace around a partial, add it in the parent, 
+        // Whitespace at beginning and end of all templates inside <script> tags will
+        // be trimmed. If you want whitespace around a partial, add it in the parent,
         // not the partial. Or do it explicitly using <br/> or &nbsp;
-        grabTemplates: function () {        
-            var i, 
-                scripts = document.scripts, 
-                l = scripts.length,
+        grabTemplates: function () {
+            var i,
+                scripts = document.getElementsByTagName('script'),
+                l = (scripts !== undefined ? scripts.length : 0),
                 script,
                 trash = [];
             for (i = 0; i < l; i++) {
                 script = scripts[i];
-                if (script && script.innerText && script.id && (script.type === "text/html" || script.type === "text/x-icanhaz")) {
-                    ich.addTemplate(script.id, trim(script.innerText));
+                if (script && script.innerHTML && script.id && (script.type === "text/html" || script.type === "text/x-icanhaz")) {
+                    ich.addTemplate(script.id, trim(script.innerHTML));
                     trash.unshift(script);
                 }
             }
             for (i = 0, l = trash.length; i < l; i++) {
-                trash[i].parentElement.removeChild(trash[i]);
+                trash[i].parentNode.removeChild(trash[i]);
             }
         }
     };
-    
+
     // attach it to the window
     if (typeof require !== 'undefined') {
         module.exports = ich;
@@ -404,7 +404,7 @@ var Mustache = function() {
         // else make global
         window.ich = ich;
     }
-    
+
     if (typeof document !== 'undefined') {
         if (ich.$) {
             ich.$(function () {
@@ -413,9 +413,9 @@ var Mustache = function() {
         } else {
             document.addEventListener('DOMContentLoaded', function () {
                 ich.grabTemplates();
-            });
+            }, false);
         }
     }
-        
+
 })()
 })();
