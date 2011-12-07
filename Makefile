@@ -7,11 +7,15 @@ COMPILER ?= /usr/local/bin/closure-compiler.jar
 ICH = ICanHaz.js
 ICH_MIN = ICanHaz.min.js
 
+ICH_NOMS = ICanHaz-no-mustache.js
+ICH_NOMS_MIN = ICanHaz-no-mustache.min.js
+
 MAIN_FILE = source/main.js
 MUSTACHE_FILE ?= source/mustache.js
 BASE_FILES = $(MUSTACHE_FILE) $(MAIN_FILE)
 
-all: $(ICH) $(ICH_MIN)
+all: $(ICH) $(ICH_MIN) $(ICH_NOMS) $(ICH_NOMS_MIN)
+
 %.min.js: %.js
 	@@echo
 	@@echo "Building" $@ "..."
@@ -33,7 +37,17 @@ $(ICH): $(BASE_FILES)
 	@@cat $(BASE_FILES) | sed -e 's/@VERSION@/$(VERSION)/' >> $(ICH)
 	@@echo "})();" >> $(ICH)
 	@@echo $(ICH) "built."
+
+$(ICH_NOMS): $(MAIN_FILE)
+	@@echo
+	@@echo "Building" $(ICH_NOMS) "..."
+	@@cat source/intro.js | sed -e 's/@VERSION@/$(VERSION)/' > $(ICH_NOMS)
+	@@echo "(function ($$) {" >> $(ICH_NOMS)
+	@@cat $(MAIN_FILE) | sed -e 's/@VERSION@/$(VERSION)/' >> $(ICH_NOMS)
+	@@echo "})();" >> $(ICH_NOMS)
+	@@echo $(ICH_NOMS) "built."
 	@@echo
 
+
 clean:
-	@rm -f $(ICH) $(ICH_MIN)
+	@rm -f $(ICH) $(ICH_MIN) $(ICH_NOMS) $(ICH_NOMS_MIN)
