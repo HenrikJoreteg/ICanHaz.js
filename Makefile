@@ -2,19 +2,28 @@ SHELL = /bin/bash
 
 VERSION = $(shell cat version.txt;)
 
-COMPILER = /usr/local/bin/closure-compiler.jar
+COMPILER ?= /usr/local/bin/closure-compiler.jar
 
 ICH = ICanHaz.js
 ICH_MIN = ICanHaz.min.js
 
-BASE_FILES = source/mustache.js \
-	source/main.js
+MAIN_FILE = source/main.js
+MUSTACHE_FILE ?= source/mustache.js
+BASE_FILES = $(MUSTACHE_FILE) $(MAIN_FILE)
 
-all: normal min
-
-normal: $(ICH)
-
-min: $(ICH_MIN)
+all: $(ICH) $(ICH_MIN)
+%.min.js: %.js
+	@@echo
+	@@echo "Building" $@ "..."
+ifdef COMPILER
+	@@java -jar $(COMPILER) --compilation_level SIMPLE_OPTIMIZATIONS --js=$< > $@
+	@@echo $@ "built."
+else
+	@@echo $@ "not built."
+	@@echo "    Google Closure complier required to build minified version."
+	@@echo "    Please point COMPILER variable in 'makefile' to the jar file."
+endif
+	@@echo
 
 $(ICH): $(BASE_FILES)
 	@@echo
@@ -26,16 +35,5 @@ $(ICH): $(BASE_FILES)
 	@@echo $(ICH) "built."
 	@@echo
 
-
-$(ICH_MIN): $(ICH)
-	@@echo
-	@@echo "Building" $(ICH_MIN) "..."
-ifdef COMPILER
-	@@java -jar $(COMPILER) --compilation_level SIMPLE_OPTIMIZATIONS --js=$(ICH) > $(ICH_MIN)
-	@@echo $(ICH_MIN) "built."
-else
-	@@echo $(ICH_MIN) "not built."
-	@@echo "    Google Closure complier required to build minified version."
-	@@echo "    Please point COMPILER variable in 'makefile' to the jar file."
-endif
-	@@echo
+clean:
+	@rm -f $(ICH) $(ICH_MIN)
