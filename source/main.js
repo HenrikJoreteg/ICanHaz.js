@@ -21,7 +21,6 @@
         // If you want a different template, it should have a different name.
         addTemplate: function (name, templateString) {
             if (typeof name === 'object') {
-                console.log('object');
                 for (var template in name) {
                     this.addTemplate(template, name[template]);
                 }
