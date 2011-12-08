@@ -20,21 +20,33 @@ More info at: http://icanhazjs.com
         $: (typeof window !== 'undefined') ? window.jQuery || window.Zepto || null : null,
         
         // public function for adding templates
+        // can take a name and template string arguments
+        // or can take an object with name/template pairs
         // We're enforcing uniqueness to avoid accidental template overwrites.
         // If you want a different template, it should have a different name.
         addTemplate: function (name, templateString) {
-            if (ich[name]) throw "Invalid name: " + name + ".";
-            if (ich.templates[name]) throw "Template \" + name + \" exists";
-            
-            ich.templates[name] = templateString;
-            ich[name] = function (data, raw) {
-                data = data || {};
-                var result = Mustache.to_html(ich.templates[name], data, ich.templates);
-                return (ich.$ && !raw) ? ich.$(result) : result;
-            };
+            if (typeof name === 'object') {
+                console.log('object');
+                for (var template in name) {
+                    this.addTemplate(template, name[template]);
+                }
+                return;
+            }
+            if (ich[name]) {
+                console.error("Invalid name: " + name + "."); 
+            } else if (ich.templates[name]) {
+                console.error("Template \"" + name + "  \" exists");
+            } else {
+                ich.templates[name] = templateString;
+                ich[name] = function (data, raw) {
+                    data = data || {};
+                    var result = Mustache.to_html(ich.templates[name], data, ich.templates);
+                    return (ich.$ && !raw) ? ich.$(result) : result;
+                };
+            }
         },
         
-        // clears all retrieval functions and empties caches
+        // clears all retrieval functions and empties cache
         clearAll: function () {
             for (var key in ich.templates) {
                 delete ich[key];
@@ -71,11 +83,11 @@ More info at: http://icanhazjs.com
         }
     };
     
-    // attach it to the window
+    // Use CommonJS if applicable
     if (typeof require !== 'undefined') {
         module.exports = ich;
     } else {
-        // else make global
+        // else attach it to the window
         window.ich = ich;
     }
     
@@ -91,5 +103,5 @@ More info at: http://icanhazjs.com
         }
     }
         
-})()
+})();
 })();

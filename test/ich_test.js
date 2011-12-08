@@ -96,4 +96,15 @@ test("refresh should empty then grab new", function () {
     equal(ich.hasOwnProperty('flint'), false, "flint template should be gone");
 });
 
-
+test("can add multiple templates at once", function () {
+    var templates = {
+            first: "first {{person}}",
+            second: "second {{person}}",
+        },
+        obj = {
+            person: "bob"
+        };
+    ich.addTemplate(templates);
+    equal(ich.first(obj, true), 'first bob');
+    ok(ich.second(obj, true), 'second bob');
+});
