@@ -1,8 +1,8 @@
 /*!
-ICanHaz.js version 0.9 -- by @HenrikJoreteg
+ICanHaz.js version 0.9-dev -- by @HenrikJoreteg
 More info at: http://icanhazjs.com
 */
-(function ($) {
+(function () {
 /*!
   ICanHaz.js -- by @HenrikJoreteg
 */
@@ -10,10 +10,10 @@ More info at: http://icanhazjs.com
 (function () {
     function trim(stuff) {
         if (''.trim) return stuff.trim();
-        else return s.replace(/^\s+/, '').replace(/\s+$/, '');
+        else return stuff.replace(/^\s+/, '').replace(/\s+$/, '');
     }
     var ich = {
-        VERSION: "0.9",
+        VERSION: "0.9-dev",
         templates: {},
         
         // grab jquery or zepto if it's there
@@ -55,19 +55,18 @@ More info at: http://icanhazjs.com
         // not the partial. Or do it explicitly using <br/> or &nbsp;
         grabTemplates: function () {        
             var i, 
-                scripts = document.scripts, 
-                l = scripts.length,
+                scripts = document.getElementsByTagName('script'), 
                 script,
                 trash = [];
-            for (i = 0; i < l; i++) {
+            for (i = 0, l = scripts.length; i < l; i++) {
                 script = scripts[i];
-                if (script && script.innerText && script.id && (script.type === "text/html" || script.type === "text/x-icanhaz")) {
-                    ich.addTemplate(script.id, trim(script.innerText));
+                if (script && script.innerHTML && script.id && (script.type === "text/html" || script.type === "text/x-icanhaz")) {
+                    ich.addTemplate(script.id, trim(script.innerHTML));
                     trash.unshift(script);
                 }
             }
             for (i = 0, l = trash.length; i < l; i++) {
-                trash[i].parentElement.removeChild(trash[i]);
+                trash[i].parentNode.removeChild(trash[i]);
             }
         }
     };

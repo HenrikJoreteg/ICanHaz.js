@@ -1,12 +1,10 @@
 /*!
-ICanHaz.js version 0.9 -- by @HenrikJoreteg
+ICanHaz.js version 0.9-dev -- by @HenrikJoreteg
 More info at: http://icanhazjs.com
 */
-(function ($) {
-/*!
-  mustache.js -- Logic-less templates in JavaScript
-
-  by @janl (MIT Licensed, https://github.com/janl/mustache.js/blob/master/LICENSE).
+(function () {
+/*
+  mustache.js — Logic-less templates in JavaScript
 
   See http://mustache.github.com/ for more info.
 */
@@ -54,7 +52,7 @@ var Mustache = function() {
       Sends parsed lines
     */
     send: function(line) {
-      if(line != "") {
+      if(line !== "") {
         this.buffer.push(line);
       }
     },
@@ -70,7 +68,7 @@ var Mustache = function() {
 
       var that = this;
       var regex = new RegExp(this.otag + "%([\\w-]+) ?([\\w]+=[\\w]+)?" +
-            this.ctag);
+            this.ctag, "g");
       return template.replace(regex, function(match, pragma, options) {
         if(!that.pragmas_implemented[pragma]) {
           throw({message: 
@@ -251,11 +249,12 @@ var Mustache = function() {
     */
     escape: function(s) {
       s = String(s === null ? "" : s);
-      return s.replace(/&(?!\w+;)|["<>\\]/g, function(s) {
+      return s.replace(/&(?!\w+;)|["'<>\\]/g, function(s) {
         switch(s) {
         case "&": return "&amp;";
         case "\\": return "\\\\";
-        case '"': return '\"';
+        case '"': return '&quot;';
+        case "'": return '&#39;';
         case "<": return "&lt;";
         case ">": return "&gt;";
         default: return s;
@@ -312,7 +311,7 @@ var Mustache = function() {
 
   return({
     name: "mustache.js",
-    version: "0.3.0",
+    version: "0.3.1-dev",
 
     /*
       Turns a template and view into HTML
@@ -328,17 +327,18 @@ var Mustache = function() {
       }
     }
   });
-}();/*!
+}();
+/*!
   ICanHaz.js -- by @HenrikJoreteg
 */
 /*global  */
 (function () {
     function trim(stuff) {
         if (''.trim) return stuff.trim();
-        else return s.replace(/^\s+/, '').replace(/\s+$/, '');
+        else return stuff.replace(/^\s+/, '').replace(/\s+$/, '');
     }
     var ich = {
-        VERSION: "0.9",
+        VERSION: "0.9-dev",
         templates: {},
         
         // grab jquery or zepto if it's there
@@ -380,19 +380,18 @@ var Mustache = function() {
         // not the partial. Or do it explicitly using <br/> or &nbsp;
         grabTemplates: function () {        
             var i, 
-                scripts = document.scripts, 
-                l = scripts.length,
+                scripts = document.getElementsByTagName('script'), 
                 script,
                 trash = [];
-            for (i = 0; i < l; i++) {
+            for (i = 0, l = scripts.length; i < l; i++) {
                 script = scripts[i];
-                if (script && script.innerText && script.id && (script.type === "text/html" || script.type === "text/x-icanhaz")) {
-                    ich.addTemplate(script.id, trim(script.innerText));
+                if (script && script.innerHTML && script.id && (script.type === "text/html" || script.type === "text/x-icanhaz")) {
+                    ich.addTemplate(script.id, trim(script.innerHTML));
                     trash.unshift(script);
                 }
             }
             for (i = 0, l = trash.length; i < l; i++) {
-                trash[i].parentElement.removeChild(trash[i]);
+                trash[i].parentNode.removeChild(trash[i]);
             }
         }
     };

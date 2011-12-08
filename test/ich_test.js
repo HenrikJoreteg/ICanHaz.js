@@ -9,14 +9,12 @@ module("ICanHaz");
 
 test("creates function for template", function() {
 	expect(1);
-	ok(ich.test1 != null, "test1 template exists");
+	ok(ich.test1, "test1 template exists");
 });
 
 test("renders non-parameterized templates", function() {
-	expect(2);
+	expect(1);
 	equal(ich.test1({}, true), "<p>This is a test of the emergency broadcast system.</p>"); // raw text
-	var nodes = ich.test1();
-	equal(typeof nodes, "string"); 
 });
 
 test("renders parameterized templates", function() {
