@@ -29,7 +29,7 @@
             };
         },
         
-        // clears all retrieval functions and empties caches
+        // clears all retrieval functions and empties cache
         clearAll: function () {
             for (var key in ich.templates) {
                 delete ich[key];
@@ -66,11 +66,11 @@
         }
     };
     
-    // attach it to the window
+    // Use CommonJS if applicable
     if (typeof require !== 'undefined') {
         module.exports = ich;
     } else {
-        // else make global
+        // else attach it to the window
         window.ich = ich;
     }
     
@@ -86,4 +86,4 @@
         }
     }
         
-})()
+})();
