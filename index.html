@@ -17,13 +17,15 @@
   <div id="container">
 
     <h1 id="title"><a href="http://github.com/andyet/ICanHaz.js">ICanHaz<span class="dot">.</span><span class="js">js</span></a></h1>
-    <p id="intro">Simple &amp; powerful client-side templating for jQuery or Zepto.js</p>
+    <p id="intro">Simple &amp; powerful client-side templating</p>
 
     <h2>Download</h2>
     
     <ul>
       <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz.js">ICanHaz.js</a> - Uncompressed</li>
       <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz.min.js">ICanHaz.min.js</a> - Minified</li>
+      <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz-no-mustache.js">ICanHaz-no-mustache.js</a> - Bring your own mustache (pick your own version just expects a <code>Mustache</code> global).</li>
+      <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz-no-mustache.min.js">ICanHaz-no-mustache.min.js</a> - Minified, no Mustache</li>
     </ul>
     <div class="download">
       <a href="http://github.com/andyet/ICanHaz.js/zipball/master"><img width="90" src="images/zip.png"></a>
@@ -59,9 +61,9 @@ var user = ich.user(user_data_object)</code></pre>
 
             <p>For simplicity and ease of use, ICanHaz includes
             <a href=
-            "https://github.com/janl/mustache.js/tree/0.3.0">janl's
-            Mustache.js v0.3.0</a> (inside a closure) that way you
-            can just include ICanHaz along with jQuery or Zepto and then YOU
+            "https://github.com/janl/mustache.js">janl's
+            Mustache.js v0.3.1-dev</a> (inside a closure, latest at the time of this push) that way you
+            can just include ICanHaz and then YOU
             CAN HAZ stuffs. Luckily Mustache and Mustache.js are
             generously MIT licensed. Mr. Github founder himself
             Chris Wanstrath (<a href=
@@ -144,16 +146,19 @@ var html = Mustache.to_html(template, view);</code></pre>
 // I can has user??
 html = ich.user(data)</code></pre>
 
-            <p>At this point 'html' is jQuery or Zepto object containing
+            <p>At this point 'html' is jQuery or Zepto (if they're included) object containing
             your complete html with your data injected.</p>
-
+            
             <p>For each template you define (except partials),
             ICanHaz builds a retrieval function with the same name.
             If you don't want a jQuery object but just want the
             populated string you can just pass in <code>true</code>
             as the second argument to get the raw string. This is
             useful if your template isn't producing html.</p>
-
+            
+            <p>If you don't have jQuery or Zepto, you can still use ICanHaz. You'll just get strings
+            back instead of jQuery objects.</p>
+            
             <h3>I'm in ur templates, making macroz.</h3>
 
             <p>ICanHaz.js also supports mustache <em>partials</em>.
@@ -174,9 +179,7 @@ html = ich.user(data)</code></pre>
                 include mechanism. Nothing fancy.</p>
             </blockquote>
 
-            <p>Just add <code>class="partial"</code> when defining
-            the template for a partial (It won't be added to your
-            main template cache):</p>
+            <p>Just add your partial like any other template</p>
             <pre class="prettyprint">
 <code>&lt;!-- Main template, includes the "winnings" partial. --&gt;
 &lt;script id="welcome" type="text/html"&gt;
@@ -212,10 +215,6 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                 <code>&lt;script type="text/html"&gt;</code>
                 approach or want to lazy load 'em from a server or
                 whatnot.</li>
-
-                <li><code>ich.addPartial(name,
-                mustacheTemplateString)</code>: Add new partial,
-                see above.</li>
 
                 <li><code>ich.clearAll()</code>: Clears templates
                 and partials cache.</li>
@@ -321,30 +320,26 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                 - Zepto.js support</li>
             </ul>
 
-            <h2>Tested in:</h2>
+            <h2>Browser Support:</h2>
 
-            <p>I've personally run the tests in the following
-            browsers. But basically, there's no reason it shouldn't
-            work in any browser that jQuery and Mustache
-            support. It should also work with Zepto in any browser 
-            Zepto supports which is a smaller list of course.</p>
+            <p>This has been tested in a pile of browsers. Thanks to BrowserStack. The only thing that may fail is the automatic grabbing of templates if you're in a browser that doesn't support <code>DOMContentLoaded</code> and you didn't include jQuery or Zepto. Other than that all browsers should work. If not, it's a bug.</p>
 
-            <ul>
-                <li>IE 6, 8 (and 8 in compat. mode, which is
-                <em>supposed</em> to be like 7)</li>
-
-                <li>FF 3.6</li>
-
-                <li>Chrome 7</li>
-
-                <li>Safari 5</li>
-                
-                <li>Mobile Safari (iPhone simulator)</li>
-            </ul>
-
+            <a href="#changelog">
             <h2>Changelog</h2>
-
+            </a>
+            
             <ul>
+                <li>0.10
+                    <ul>
+                        <li>Now includes versions without Mustache bundled.</li>
+                        <li>Mustache.js is now a submodule to simplify building different bundles with different versions.</li>
+                        <li>If you're using a CommonJS system, you can now do <code>require("ICanHaz")</code>.</li>
+                        <li>There is no longer any distinction between partials and regular templates. They're all in the same cache. This means that you can use a template as a partial in one place and by itself in another place without having to duplicate the template.</li>
+                        <li>Builds the minified versions with Google's Closure web API so you don't need any local minifier installed to run "make".</li>
+                        <li>jQuery and Zepto are now optional.</li>
+                    </ul>
+                </li>
+                
                 <li>0.9: 
                     <ul>
                         <li>Made templates and partials caches public for easy inspection in console.</li>
