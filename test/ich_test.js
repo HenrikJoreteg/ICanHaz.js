@@ -8,57 +8,57 @@ function isEmptyObject( obj ) {
 module("ICanHaz");
 
 test("creates function for template", function() {
-	expect(1);
-	ok(ich.test1, "test1 template exists");
+  expect(1);
+  ok(ich.test1, "test1 template exists");
 });
 
 test("renders non-parameterized templates", function() {
-	expect(1);
-	equal(ich.test1({}, true), "<p>This is a test of the emergency broadcast system.</p>"); // raw text
+  expect(1);
+  equal(ich.test1({}, true), "<p>This is a test of the emergency broadcast system.</p>"); // raw text
 });
 
 test("renders parameterized templates", function() {
-	expect(1);
-	equal(ich.test2({prey:'wabbits'}, true), "<span>Be vewwy vewwy quiet, we're hunting wabbits.</span>"); 
+  expect(1);
+  equal(ich.test2({prey:'wabbits'}, true), "<span>Be vewwy vewwy quiet, we're hunting wabbits.</span>"); 
 });
 
 test("renders ad hoc templates", function() {
-	ich.addTemplate('favoriteColor', 'Red. No, Blue. Aieee!');
-	expect(1);
-	equal(ich.favoriteColor({}, true), 'Red. No, Blue. Aieee!');
+  ich.addTemplate('favoriteColor', 'Red. No, Blue. Aieee!');
+  expect(1);
+  equal(ich.favoriteColor({}, true), 'Red. No, Blue. Aieee!');
 });
 
 // Newly added support for partials
 test("renders partials", function() {
-	// partials example from the Mustache README
-	expect(1);
-	var view = {
-  		name: "Joe",
-  		winnings: {
-    		value: 1000,
-    		taxed_value: function() {
-        		return this.value - (this.value * 0.4);
-    		}
-  		}
-	}
-	equal(ich.welcome(view, true), "<p>Welcome, Joe! You just won $1000 (which is $600 after tax)</p>");
+  // partials example from the Mustache README
+  expect(1);
+  var view = {
+      name: "Joe",
+      winnings: {
+        value: 1000,
+        taxed_value: function() {
+          return this.value - (this.value * 0.4);
+        }
+      }
+  };
+  equal(ich.welcome(view, true), "<p>Welcome, Joe! You just won $1000 (which is $600 after tax)</p>");
 });
 
 test("renders partials added at runtime", function() {
-	// partials example from the Mustache README
-	ich.addTemplate('winnings2', "You just won ${{value}} (which is ${{taxed_value}} after tax)");
-	ich.addTemplate('welcome2', "Welcome, {{name}}! {{>winnings2}}");
-	expect(1);
-	var view = {
-  		name: "Joe",
-  		winnings2: {
-    		value: 1000,
-    		taxed_value: function() {
-        		return this.value - (this.value * 0.4);
-    		}
-  		}
-	}
-	equal(ich.welcome2(view, true), 'Welcome, Joe! You just won $1000 (which is $600 after tax)');
+  // partials example from the Mustache README
+  ich.addTemplate('winnings2', "You just won ${{value}} (which is ${{taxed_value}} after tax)");
+  ich.addTemplate('welcome2', "Welcome, {{name}}! {{>winnings2}}");
+  expect(1);
+  var view = {
+      name: "Joe",
+      winnings2: {
+        value: 1000,
+        taxed_value: function() {
+          return this.value - (this.value * 0.4);
+        }
+      }
+  };
+  equal(ich.welcome2(view, true), 'Welcome, Joe! You just won $1000 (which is $600 after tax)');
 });
 
 test("clearAll should wipe 'em out", function () {
@@ -67,7 +67,7 @@ test("clearAll should wipe 'em out", function () {
     ok(isEmptyObject(ich.templates));
     ok(isEmptyObject(ich.partials));
     
-    equal(ich['welcome2'], undefined, "welcome2 template gone?");
+    equal(ich.welcome2, undefined, "welcome2 template gone?");
 });
 
 test("grabTemplates that are loaded in later", function () {
@@ -75,8 +75,9 @@ test("grabTemplates that are loaded in later", function () {
     var el = document.createElement('script');
     el.id = "flint";
     el.type = "text/html";
-    el.innerHTML = "yabba {{ something }} doo!";
-    document.head.appendChild(el);
+    el.text = "yabba {{ something }} doo!";
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(el);
     
     ich.grabTemplates();
     equal(ich.flint({something: 'dabba'}, true), "yabba dabba doo!", "should have new template");
@@ -87,8 +88,9 @@ test("refresh should empty then grab new", function () {
     var el = document.createElement('script');
     el.id = "mother";
     el.type = "text/html";
-    el.innerHTML = "your mother was a {{ something }}...";
-    document.head.appendChild(el);
+    el.text = "your mother was a {{ something }}...";
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(el);
     
     ich.refresh();
     
@@ -99,7 +101,7 @@ test("refresh should empty then grab new", function () {
 test("can add multiple templates at once", function () {
     var templates = {
             first: "first {{person}}",
-            second: "second {{person}}",
+            second: "second {{person}}"
         },
         obj = {
             person: "bob"

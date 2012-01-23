@@ -98,7 +98,7 @@ More info at: http://icanhazjs.com
         } else {
             document.addEventListener('DOMContentLoaded', function () {
                 ich.grabTemplates();
-            });
+            }, true);
         }
     }
         

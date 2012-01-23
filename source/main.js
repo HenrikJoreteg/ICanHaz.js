@@ -93,7 +93,7 @@
         } else {
             document.addEventListener('DOMContentLoaded', function () {
                 ich.grabTemplates();
-            });
+            }, true);
         }
     }
         
