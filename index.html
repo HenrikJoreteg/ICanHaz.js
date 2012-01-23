@@ -19,7 +19,9 @@
     <h1 id="title"><a href="http://github.com/andyet/ICanHaz.js">ICanHaz<span class="dot">.</span><span class="js">js</span></a></h1>
     <p id="intro">Simple &amp; powerful client-side templating</p>
 
+    <a name="download">
     <h2>Download</h2>
+    </a>
     
     <ul>
       <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz.js">ICanHaz.js</a> - Uncompressed</li>
@@ -38,9 +40,11 @@
     <hr />
     <div id="readme">
             <h1>Okay, let's do things</h1>
-
+            
+            <a name="demo">
             <h2>The Quick Demo:</h2>
-
+            </a>
+            
             <h3>Step 1. - Define your template</h3>
             <pre class="prettyprint lang-html">
 <code>&lt;script id="user" type="text/html"&gt;
@@ -56,8 +60,10 @@
 var user = ich.user(user_data_object)</code></pre>
 
             <h3>Step 3. - There is no step 3!</h3>
-
+            
+            <a name="what">
             <h2>What else do I need to know?</h2>
+            </a>
 
             <p>For simplicity and ease of use, ICanHaz includes
             <a href=
@@ -73,7 +79,9 @@ var user = ich.user(user_data_object)</code></pre>
             for more info. Then it was ported to JS by <a href=
             "https://github.com/janl">Jan Lehnardt</a>.</p>
 
+            <a name="why">
             <h2>Why would we need this?</h2>
+            </a>
 
             <p>Because building html elements using javascript or
             jQuery is ugly. There's several ways to do it, but the point is &mdash; it's ugly.</p>
@@ -121,8 +129,10 @@ var html = Mustache.to_html(template, view);</code></pre>
   &lt;span class="title"&gt;{{ title }}&lt;/span&gt;\
   &lt;ul&gt;&lt;/ul&gt;\
 &lt;/div&gt;'</code></pre>
-
+            
+            <a name="solution">
             <h2>I Can Haz Better Solution?</h2>
+            </a>
 
             <p>YES!</p>
 
@@ -201,8 +211,10 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
             you'd prefer to pull the from a server with ajax or
             whatnot. You can even do <code>ich.grabTemplates</code>
             if you've loaded in some other page</p>
-
+            
+            <a name="methods">
             <h2>Available Methods</h2>
+            </a>
 
             <p>Beyond the retrieval functions that ICanHaz creates
             based on template names, these additional methods
@@ -232,7 +244,9 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                 templates.</li>
             </ul>
 
+            <a name="examples">
             <h2>Examples</h2>
+            </a>
             <h3>Full Working Example</h3>
             <pre class="prettyprint">
 <code>&lt;!DOCTYPE html&gt;
@@ -290,7 +304,9 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 				
+			<a name="remote">
 			<h3>Pulling templates from a remote server</h3>	
+			</a>
 			<pre class="prettyprint lang-js">
 <code>$.getJSON('/myserver/templates.json', function (templates) {
     $.each(templates, function (template) {
@@ -299,8 +315,9 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
 });</code></pre>
 			
 			<hr />
-			
+			      <a name="credits">
             <h2>Credits</h2>
+            </a>
 
             <p>ICanHaz.js was created by <a href="http://twitter.com/HenrikJoreteg">@HenrikJoreteg</a>.</p>
 
@@ -320,11 +337,13 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                 - Zepto.js support</li>
             </ul>
 
+            <a name="browsers">
             <h2>Browser Support:</h2>
+            </a>
 
             <p>This has been tested in a pile of browsers. Thanks to BrowserStack. The only thing that may fail is the automatic grabbing of templates if you're in a browser that doesn't support <code>DOMContentLoaded</code> and you didn't include jQuery or Zepto. Other than that all browsers should work. If not, it's a bug.</p>
 
-            <a href="#changelog">
+            <a name="changelog">
             <h2>Changelog</h2>
             </a>
             
