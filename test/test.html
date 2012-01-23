@@ -17,7 +17,7 @@
             <p>Welcome, {{name}}! {{>winnings}}</p>
         </script>
         <script id="winnings" type="text/html">
-            You just won ${{value}} (which is ${{taxed_value}} after tax)
+            You just won ${{winnings.value}} (which is ${{winnings.taxed_value}} after tax)
         </script>
         <script id="version" type="text/html">
             ICanHaz Tests? YES! You're testing v{{ version }}

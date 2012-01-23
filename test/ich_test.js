@@ -46,7 +46,7 @@ test("renders partials", function() {
 
 test("renders partials added at runtime", function() {
   // partials example from the Mustache README
-  ich.addTemplate('winnings2', "You just won ${{value}} (which is ${{taxed_value}} after tax)");
+  ich.addTemplate('winnings2', "You just won ${{winnings2.value}} (which is ${{winnings2.taxed_value}} after tax)");
   ich.addTemplate('welcome2', "Welcome, {{name}}! {{>winnings2}}");
   expect(1);
   var view = {
