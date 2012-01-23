@@ -1,5 +1,5 @@
 /*!
-ICanHaz.js version 0.9.1 -- by @HenrikJoreteg
+ICanHaz.js version 0.10 -- by @HenrikJoreteg
 More info at: http://icanhazjs.com
 */
 (function () {
@@ -338,7 +338,7 @@ var Mustache = function() {
         else return stuff.replace(/^\s+/, '').replace(/\s+$/, '');
     }
     var ich = {
-        VERSION: "0.9.1",
+        VERSION: "0.10",
         templates: {},
         
         // grab jquery or zepto if it's there
