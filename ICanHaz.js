@@ -1,5 +1,5 @@
 /*!
-ICanHaz.js version 0.10 -- by @HenrikJoreteg
+ICanHaz.js version 0.10.1 -- by @HenrikJoreteg
 More info at: http://icanhazjs.com
 */
 (function () {
@@ -449,7 +449,7 @@ var Mustache = function () {
         else return stuff.replace(/^\s+/, '').replace(/\s+$/, '');
     }
     var ich = {
-        VERSION: "0.10",
+        VERSION: "0.10.1",
         templates: {},
         
         // grab jquery or zepto if it's there
@@ -501,7 +501,8 @@ var Mustache = function () {
         // be trimmed. If you want whitespace around a partial, add it in the parent, 
         // not the partial. Or do it explicitly using <br/> or &nbsp;
         grabTemplates: function () {        
-            var i, l,
+            var i,
+                l,
                 scripts = document.getElementsByTagName('script'), 
                 script,
                 trash = [];

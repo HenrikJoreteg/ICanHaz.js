@@ -60,7 +60,8 @@
         // be trimmed. If you want whitespace around a partial, add it in the parent, 
         // not the partial. Or do it explicitly using <br/> or &nbsp;
         grabTemplates: function () {        
-            var i, 
+            var i,
+                l,
                 scripts = document.getElementsByTagName('script'), 
                 script,
                 trash = [];
