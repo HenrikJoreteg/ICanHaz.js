@@ -448,6 +448,10 @@ var Mustache = function () {
         if (''.trim) return stuff.trim();
         else return stuff.replace(/^\s+/, '').replace(/\s+$/, '');
     }
+
+    // Establish the root object, `window` in the browser, or `global` on the server.
+    var root = this;
+    
     var ich = {
         VERSION: "0.10.1",
         templates: {},
@@ -519,12 +523,17 @@ var Mustache = function () {
         }
     };
     
-    // Use CommonJS if applicable
-    if (typeof require !== 'undefined') {
-        module.exports = ich;
+    // Export the ICanHaz object for **Node.js**, with
+    // backwards-compatibility for the old `require()` API. If we're in
+    // the browser, add `ich` as a global object via a string identifier,
+    // for Closure Compiler "advanced" mode.
+    if (typeof exports !== 'undefined') {
+        if (typeof module !== 'undefined' && module.exports) {
+            exports = module.exports = ich;
+        }
+        exports.ich = ich;
     } else {
-        // else attach it to the window
-        window.ich = ich;
+        root['ich'] = ich;
     }
     
     if (typeof document !== 'undefined') {
