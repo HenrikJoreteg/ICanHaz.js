@@ -1,5 +1,5 @@
 /*!
-ICanHaz.js version 0.10.1 -- by @HenrikJoreteg
+ICanHaz.js version 0.10.2 -- by @HenrikJoreteg
 More info at: http://icanhazjs.com
 */
 (function () {
@@ -451,14 +451,14 @@ var Mustache = function () {
 
     // Establish the root object, `window` in the browser, or `global` on the server.
     var root = this;
-    
+
     var ich = {
-        VERSION: "0.10.1",
+        VERSION: "0.10.2",
         templates: {},
-        
+
         // grab jquery or zepto if it's there
         $: (typeof window !== 'undefined') ? window.jQuery || window.Zepto || null : null,
-        
+
         // public function for adding templates
         // can take a name and template string arguments
         // or can take an object with name/template pairs
@@ -472,7 +472,7 @@ var Mustache = function () {
                 return;
             }
             if (ich[name]) {
-                console.error("Invalid name: " + name + "."); 
+                console.error("Invalid name: " + name + ".");
             } else if (ich.templates[name]) {
                 console.error("Template \"" + name + "  \" exists");
             } else {
@@ -484,7 +484,7 @@ var Mustache = function () {
                 };
             }
         },
-        
+
         // clears all retrieval functions and empties cache
         clearAll: function () {
             for (var key in ich.templates) {
@@ -492,22 +492,22 @@ var Mustache = function () {
             }
             ich.templates = {};
         },
-        
+
         // clears/grabs
         refresh: function () {
             ich.clearAll();
             ich.grabTemplates();
         },
-        
+
         // grabs templates from the DOM and caches them.
         // Loop through and add templates.
-        // Whitespace at beginning and end of all templates inside <script> tags will 
-        // be trimmed. If you want whitespace around a partial, add it in the parent, 
+        // Whitespace at beginning and end of all templates inside <script> tags will
+        // be trimmed. If you want whitespace around a partial, add it in the parent,
         // not the partial. Or do it explicitly using <br/> or &nbsp;
-        grabTemplates: function () {        
+        grabTemplates: function () {
             var i,
                 l,
-                scripts = document.getElementsByTagName('script'), 
+                scripts = document.getElementsByTagName('script'),
                 script,
                 trash = [];
             for (i = 0, l = scripts.length; i < l; i++) {
@@ -522,7 +522,7 @@ var Mustache = function () {
             }
         }
     };
-    
+
     // Export the ICanHaz object for **Node.js**, with
     // backwards-compatibility for the old `require()` API. If we're in
     // the browser, add `ich` as a global object via a string identifier,
@@ -535,7 +535,7 @@ var Mustache = function () {
     } else {
         root['ich'] = ich;
     }
-    
+
     if (typeof document !== 'undefined') {
         if (ich.$) {
             ich.$(function () {
@@ -547,6 +547,6 @@ var Mustache = function () {
             }, true);
         }
     }
-        
+
 })();
 })();
