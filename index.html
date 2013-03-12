@@ -12,39 +12,39 @@
 </head>
 
 <body>
-  <a href="http://github.com/andyet/ICanHaz.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  <a href="http://github.com/HenrikJoreteg/ICanHaz.js"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
   <div id="container">
 
-    <h1 id="title"><a href="http://github.com/andyet/ICanHaz.js">ICanHaz<span class="dot">.</span><span class="js">js</span></a></h1>
+    <h1 id="title"><a href="http://github.com/HenrikJoreteg/ICanHaz.js">ICanHaz<span class="dot">.</span><span class="js">js</span></a></h1>
     <p id="intro">Simple &amp; powerful client-side templating</p>
 
     <a name="download">
     <h2>Download</h2>
     </a>
-    
+
     <ul>
-      <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz.js">ICanHaz.js</a> - Uncompressed</li>
-      <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz.min.js">ICanHaz.min.js</a> - Minified</li>
-      <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz-no-mustache.js">ICanHaz-no-mustache.js</a> - Bring your own mustache (pick your own version just expects a <code>Mustache</code> global).</li>
-      <li><a href="https://github.com/andyet/ICanHaz.js/raw/master/ICanHaz-no-mustache.min.js">ICanHaz-no-mustache.min.js</a> - Minified, no Mustache</li>
+      <li><a href="https://github.com/HenrikJoreteg/ICanHaz.js/raw/master/ICanHaz.js">ICanHaz.js</a> - Uncompressed</li>
+      <li><a href="https://github.com/HenrikJoreteg/ICanHaz.js/raw/master/ICanHaz.min.js">ICanHaz.min.js</a> - Minified</li>
+      <li><a href="https://github.com/HenrikJoreteg/ICanHaz.js/raw/master/ICanHaz-no-mustache.js">ICanHaz-no-mustache.js</a> - Bring your own mustache (pick your own version just expects a <code>Mustache</code> global).</li>
+      <li><a href="https://github.com/HenrikJoreteg/ICanHaz.js/raw/master/ICanHaz-no-mustache.min.js">ICanHaz-no-mustache.min.js</a> - Minified, no Mustache</li>
     </ul>
     <div class="download">
-      <a href="http://github.com/andyet/ICanHaz.js/zipball/master"><img width="90" src="images/zip.png"></a>
-      <a href="http://github.com/andyet/ICanHaz.js/tarball/master"><img width="90" src="images/tar.png"></a>
+      <a href="http://github.com/HenrikJoreteg/ICanHaz.js/zipball/master"><img width="90" src="images/zip.png"></a>
+      <a href="http://github.com/HenrikJoreteg/ICanHaz.js/tarball/master"><img width="90" src="images/tar.png"></a>
     </div>
-    	
-    <p>Or... you can clone <a href="http://github.com/andyet/ICanHaz.js">the whole project from GitHub</a> with 
+
+    <p>Or... you can clone <a href="http://github.com/HenrikJoreteg/ICanHaz.js">the whole project from GitHub</a> with
       <a href="http://git-scm.com">Git</a> by running:</p>
-      <pre class="prettyprint">$ git clone git://github.com/andyet/ICanHaz.js</pre>
+      <pre class="prettyprint">$ git clone git://github.com/HenrikJoreteg/ICanHaz.js</pre>
     <hr />
     <div id="readme">
             <h1>Okay, let's do things</h1>
-            
+
             <a name="demo">
             <h2>The Quick Demo:</h2>
             </a>
-            
+
             <h3>Step 1. - Define your template</h3>
             <pre class="prettyprint lang-html">
 <code>&lt;script id="user" type="text/html"&gt;
@@ -60,7 +60,7 @@
 var user = ich.user(user_data_object)</code></pre>
 
             <h3>Step 3. - There is no step 3!</h3>
-            
+
             <a name="what">
             <h2>What else do I need to know?</h2>
             </a>
@@ -129,7 +129,7 @@ var html = Mustache.to_html(template, view);</code></pre>
   &lt;span class="title"&gt;{{ title }}&lt;/span&gt;\
   &lt;ul&gt;&lt;/ul&gt;\
 &lt;/div&gt;'</code></pre>
-            
+
             <a name="solution">
             <h2>I Can Haz Better Solution?</h2>
             </a>
@@ -158,17 +158,17 @@ html = ich.user(data)</code></pre>
 
             <p>At this point 'html' is jQuery or Zepto (if they're included) object containing
             your complete html with your data injected.</p>
-            
+
             <p>For each template you define (except partials),
             ICanHaz builds a retrieval function with the same name.
             If you don't want a jQuery object but just want the
             populated string you can just pass in <code>true</code>
             as the second argument to get the raw string. This is
             useful if your template isn't producing html.</p>
-            
+
             <p>If you don't have jQuery or Zepto, you can still use ICanHaz. You'll just get strings
             back instead of jQuery objects.</p>
-            
+
             <h3>I'm in ur templates, making macroz.</h3>
 
             <p>ICanHaz.js also supports mustache <em>partials</em>.
@@ -210,7 +210,7 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
             you'd prefer to pull them from a server with ajax or
             whatnot. You can even do <code>ich.grabTemplates</code>
             if you've loaded in some other page</p>
-            
+
             <a name="methods">
             <h2>Available Methods</h2>
             </a>
@@ -269,8 +269,8 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
         $('#add_user').click(function () {
           var user_data, user;
 
-          // build a simple user object, in a real app this 
-          // would probably come from a server somewhere. 
+          // build a simple user object, in a real app this
+          // would probably come from a server somewhere.
           // Otherwise hardcoding here is just silly.
           user_data = {
             name: "Henrik Joreteg",
@@ -282,7 +282,7 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
           // Here's all the magic.
           user = ich.user(user_data);
 
-          // append it to the list, tada! 
+          // append it to the list, tada!
           //Now go do something more useful with this.
           $('#user_list').append(user);
         });
@@ -302,9 +302,9 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
     &lt;ul id="user_list"&gt;&lt;/ul&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-				
+
 			<a name="remote">
-			<h3>Pulling templates from a remote server</h3>	
+			<h3>Pulling templates from a remote server</h3>
 			</a>
 			<pre class="prettyprint lang-js">
 <code>$.getJSON('/myserver/templates.json', function (templates) {
@@ -312,7 +312,7 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
         ich.addTemplate(template.name, template.template);
     });
 });</code></pre>
-			
+
 			<hr />
 			      <a name="credits">
             <h2>Credits</h2>
@@ -325,15 +325,18 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
             <ul>
                 <li><a href="http://twitter.com/adambrault">Adam Brault</a>
                 - Documentation HTML/CSS</li>
-                
+
                 <li><a href="http://github.com/rdclark">rdclark</a>
                 - Test coverage and partials support</li>
 
                 <li><a href="http://github.com/kembuco">kembuco</a>
                 - IE Bug found/squashed</li>
-                
+
                 <li><a href="http://github.com/titanous">titanous</a>
                 - Zepto.js support</li>
+
+                <li><a href="http://github.com/jvashishtha">jvashishtha</a>
+                - RequireJS support</li>
             </ul>
 
             <a name="browsers">
@@ -345,8 +348,18 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
             <a name="changelog">
             <h2>Changelog</h2>
             </a>
-            
+
             <ul>
+                <li>0.10.2
+                    <ul>
+                        <li>Now supports RequireJS.</li>
+                    </ul>
+                </li>
+                <li>0.10.1
+                    <ul>
+                        <li>Minor bug fix.</li>
+                    </ul>
+                </li>
                 <li>0.10
                     <ul>
                         <li>Now includes versions without Mustache bundled.</li>
@@ -357,17 +370,17 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
                         <li>jQuery and Zepto are now optional.</li>
                     </ul>
                 </li>
-                
-                <li>0.9: 
+
+                <li>0.9:
                     <ul>
                         <li>Made templates and partials caches public for easy inspection in console.</li>
                         <li>Trimmed down overall size and removing <code>showAll</code> method.</li>
                         <li>Now compiled with Google's Closure compiler</li>
                     </ul>
                 </li>
-                
+
                 <li>0.8: Now works with either jQuery or Zepto.js</li>
-                
+
                 <li>0.7:
 
                     <ul>
@@ -392,7 +405,6 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
     </div>
 
   </div>
-  <a href="http://andyet.net" id="from_andyet"><h2>from &amp;yet</h2></a>
   <script>
 window.PR_SHOULD_USE_CONTINUATION=true;window.PR_TAB_WIDTH=8;window.PR_normalizedHtml=window.PR=window.prettyPrintOne=window.prettyPrint=void 0;window._pr_isIE6=function(){var y=navigator&&navigator.userAgent&&navigator.userAgent.match(/\bMSIE ([678])\./);y=y?+y[1]:false;window._pr_isIE6=function(){return y};return y};
 (function(){function y(b){return b.replace(L,"&amp;").replace(M,"&lt;").replace(N,"&gt;")}function H(b,f,i){switch(b.nodeType){case 1:var o=b.tagName.toLowerCase();f.push("<",o);var l=b.attributes,n=l.length;if(n){if(i){for(var r=[],j=n;--j>=0;)r[j]=l[j];r.sort(function(q,m){return q.name<m.name?-1:q.name===m.name?0:1});l=r}for(j=0;j<n;++j){r=l[j];r.specified&&f.push(" ",r.name.toLowerCase(),'="',r.value.replace(L,"&amp;").replace(M,"&lt;").replace(N,"&gt;").replace(X,"&quot;"),'"')}}f.push(">");
