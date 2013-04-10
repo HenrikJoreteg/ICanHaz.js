@@ -3,17 +3,17 @@
   "version": "0.10.2",
   "homepage": "http://icanhazjs.com",
   "repository": {
-    "type": "git", 
+    "type": "git",
     "url": "git://github.com/andyet/ICanHaz.js.git"
   },
   "author": {
-    "name": "Henrik Joreteg", 
-    "url": "http://andyet.net/team/henrik", 
+    "name": "Henrik Joreteg",
+    "url": "http://andyet.net/team/henrik",
     "email": "hjoreteg@gmail.com"
   },
   "description": "Simple & powerful js templating tool",
   "licenses": [{
-    "type": "MIT", 
+    "type": "MIT",
     "url": "https://github.com/andyet/ICanHaz.js/blob/master/LICENSE"
   }],
   "main": "ICanHaz.js",

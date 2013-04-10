@@ -480,7 +480,7 @@ var Mustache = function () {
                 ich[name] = function (data, raw) {
                     data = data || {};
                     var result = Mustache.to_html(ich.templates[name], data, ich.templates);
-                    return (ich.$ && !raw) ? ich.$(result) : result;
+                    return (ich.$ && !raw) ? ich.$(trim(result)) : result;
                 };
             }
         },
