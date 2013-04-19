@@ -4,14 +4,19 @@
         <title>ICanHaz Tests?</title>
         <link rel="stylesheet" href="qunit/qunit.css" type="text/css" media="screen" />
         <script src="qunit/qunit.js"></script>
-        
-        
+
+
         <!-- Testing templates -->
         <script id="test1" type="text/html">
             <p>This is a test of the emergency broadcast system.</p>
         </script>
         <script id="test2" type="text/html">
             <span>Be vewwy vewwy quiet, we're hunting {{prey}}.</span>
+        </script>
+        <script id="trim" type="text/html">
+					  {{^beef}}
+            <span>Where's the BEEF!</span>
+						{{/beef}}
         </script>
         <script id="welcome" type="text/html">
             <p>Welcome, {{name}}! {{>winnings}}</p>
@@ -22,10 +27,10 @@
         <script id="version" type="text/html">
             ICanHaz Tests? YES! You're testing v{{ version }}
         </script>
-        
+
         <script src="../ICanHaz.js"></script>
         <script src="./ich_test.js"></script>
-        
+
         <script>
             // write build version to header
             /*

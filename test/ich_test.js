@@ -5,6 +5,14 @@ function isEmptyObject( obj ) {
     return true;
 }
 
+function raw( ich ) {
+		return ich.$ === undefined
+}
+
+function first( results ) {
+		return results instanceof Object ? results.get(0).outerHTML : results
+}
+
 module("ICanHaz");
 
 test("creates function for template", function() {
@@ -14,18 +22,23 @@ test("creates function for template", function() {
 
 test("renders non-parameterized templates", function() {
   expect(1);
-  equal(ich.test1({}, true), "<p>This is a test of the emergency broadcast system.</p>"); // raw text
+  equal(first(ich.test1({}, raw(ich))), "<p>This is a test of the emergency broadcast system.</p>"); // raw text
 });
 
 test("renders parameterized templates", function() {
   expect(1);
-  equal(ich.test2({prey:'wabbits'}, true), "<span>Be vewwy vewwy quiet, we're hunting wabbits.</span>"); 
+  equal(first(ich.test2({prey:'wabbits'}, raw(ich))), "<span>Be vewwy vewwy quiet, we're hunting wabbits.</span>");
+});
+
+test("renders leading whitespace templates", function() {
+  expect(1);
+  notEqual(first(ich.trim({}, raw(ich))).indexOf("<span>Where's the BEEF!</span>"), -1);
 });
 
 test("renders ad hoc templates", function() {
-  ich.addTemplate('favoriteColor', 'Red. No, Blue. Aieee!');
+  ich.addTemplate('favoriteColor', '<p>Red. No, Blue. Aieee!</p>');
   expect(1);
-  equal(ich.favoriteColor({}, true), 'Red. No, Blue. Aieee!');
+  equal(first(ich.favoriteColor({}, raw(ich))), '<p>Red. No, Blue. Aieee!</p>');
 });
 
 // Newly added support for partials
@@ -41,13 +54,13 @@ test("renders partials", function() {
         }
       }
   };
-  equal(ich.welcome(view, true), "<p>Welcome, Joe! You just won $1000 (which is $600 after tax)</p>");
+  equal(first(ich.welcome(view, raw(ich))), "<p>Welcome, Joe! You just won $1000 (which is $600 after tax)</p>");
 });
 
 test("renders partials added at runtime", function() {
   // partials example from the Mustache README
   ich.addTemplate('winnings2', "You just won ${{value}} (which is ${{taxed_value}} after tax)");
-  ich.addTemplate('welcome2', "Welcome, {{name}}! {{>winnings2}}");
+  ich.addTemplate('welcome2', "<p>Welcome, {{name}}! {{>winnings2}}</p>");
   expect(1);
   var view = {
       name: "Joe",
@@ -58,15 +71,15 @@ test("renders partials added at runtime", function() {
         }
       }
   };
-  equal(ich.welcome2(view, true), 'Welcome, Joe! You just won $1000 (which is $600 after tax)');
+  equal(first(ich.welcome2(view, raw(ich))), '<p>Welcome, Joe! You just won $1000 (which is $600 after tax)</p>');
 });
 
 test("clearAll should wipe 'em out", function () {
     ich.clearAll();
-    
+
     ok(isEmptyObject(ich.templates));
     ok(isEmptyObject(ich.partials));
-    
+
     equal(ich.welcome2, undefined, "welcome2 template gone?");
 });
 
@@ -75,12 +88,12 @@ test("grabTemplates that are loaded in later", function () {
     var el = document.createElement('script');
     el.id = "flint";
     el.type = "text/html";
-    el.text = "yabba {{ something }} doo!";
+    el.text = "<p>yabba {{ something }} doo!</p>";
     var head = document.getElementsByTagName('head')[0];
     head.appendChild(el);
-    
+
     ich.grabTemplates();
-    equal(ich.flint({something: 'dabba'}, true), "yabba dabba doo!", "should have new template");
+    equal(first(ich.flint({something: 'dabba'}, raw(ich))), "<p>yabba dabba doo!</p>", "should have new template");
 });
 
 test("refresh should empty then grab new", function () {
@@ -88,25 +101,25 @@ test("refresh should empty then grab new", function () {
     var el = document.createElement('script');
     el.id = "mother";
     el.type = "text/html";
-    el.text = "your mother was a {{ something }}...";
+    el.text = "<p>your mother was a {{ something }}...</p>";
     var head = document.getElementsByTagName('head')[0];
     head.appendChild(el);
-    
+
     ich.refresh();
-    
-    equal(ich.mother({something: 'hampster'}, true), "your mother was a hampster...", "should have new template");
+
+    equal(first(ich.mother({something: 'hampster'}, raw(ich))), "<p>your mother was a hampster...</p>", "should have new template");
     equal(ich.hasOwnProperty('flint'), false, "flint template should be gone");
 });
 
 test("can add multiple templates at once", function () {
     var templates = {
-            first: "first {{person}}",
-            second: "second {{person}}"
+            first: "<p>first {{person}}</p>",
+            second: "<p>second {{person}}</p>"
         },
         obj = {
             person: "bob"
         };
     ich.addTemplate(templates);
-    equal(ich.first(obj, true), 'first bob');
-    ok(ich.second(obj, true), 'second bob');
+    equal(first(ich.first(obj, raw(ich))), '<p>first bob</p>');
+    ok(first(ich.second(obj, raw(ich))), '<p>second bob</p>');
 });
