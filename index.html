@@ -308,7 +308,7 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
 			</a>
 			<pre class="prettyprint lang-js">
 <code>$.getJSON('/myserver/templates.json', function (templates) {
-    $.each(templates, function (template) {
+    $.each(templates, function (index, template) {
         ich.addTemplate(template.name, template.template);
     });
 });</code></pre>
