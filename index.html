@@ -313,6 +313,20 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
     });
 });</code></pre>
 
+  
+      <h3>There is also the <a href="https://github.com/tonekk/ICanHaz.load">ICanHaz.load plugin</a>, which makes this task a little more handy:</h3>
+			</a>
+
+			<pre class="prettyprint lang-js">
+<code>
+ich.load('template', function() {
+  // Called when template has been loaded
+  // and is ready for use
+  ich.template({
+      foo: 'bar'
+  });
+});</code></pre>
+
 			<hr />
 			      <a name="credits">
             <h2>Credits</h2>
@@ -337,6 +351,9 @@ You just won ${{value}} (which is ${{taxed_value}} after tax)
 
                 <li><a href="http://github.com/jvashishtha">jvashishtha</a>
                 - RequireJS support</li>
+
+                <li><a href="http://github.com/tonekk">tonekk</a>
+                - ICanHaz.load plugin</li>
             </ul>
 
             <a name="browsers">
